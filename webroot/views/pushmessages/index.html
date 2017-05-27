@@ -1,0 +1,126 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Send Push Notification </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="load1" ng-class="{csspinner:isSendingData}">
+                        <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <!--<pre>{{newPush | json:spacing}}</pre>-->
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-body">
+                                            <div ng-show="showPrg">
+                                                <uib-progressbar animate="true" value="progress" type="success"><b>{{prgText}}</b></uib-progressbar>
+                                            </div>
+                                            <div ng-hide="showPrg">
+                                                <span class="btn btn-primary btn-o btn-file">
+                                                    Select an image file
+                                                    <input type="file" name=file_image />
+                                                </span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.title.$dirty && Form.title.$invalid, 'has-success':Form.title.$valid}">
+                                                <label class="control-label"> Title <span class="symbol required"></span> </label>
+                                                <input type="text" placeholder="Enter Push Nitification Title" class="form-control" name="title" ng-model="newPush.title" required />
+                                                <span class="error text-small block" ng-if="Form.title.$dirty && Form.title.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.title.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.message.$dirty && Form.message.$invalid, 'has-success':Form.message.$valid}">
+                                                <label class="control-label">
+                                                    Push Message <span class="symbol required"></span>
+                                                </label>
+                                                <textarea class="form-control autosize area-animated msd-elastic: \n;" name="message" required ng-model="newPush.message"></textarea>
+                                                <span class="error text-small block" ng-if="Form.message.$dirty && Form.message.$invalid">Message is required</span>
+                                                <span class="success text-small" ng-if="Form.message.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.at_time.$dirty && Form.at_time.$invalid, 'has-success':Form.at_time.$valid}">
+                                                <label class="control-label"> At Time<span class="symbol required"></span> </label>
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="Select day and time" class="dtime form-control" name="at_time" ng-model="newPush.at_time" required />
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                                <span class="error text-small block" ng-if="Form.at_time.$dirty && Form.at_time.$invalid">DateTime is required</span>
+                                                <span class="success text-small" ng-if="Form.at_time.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                                <button type="submit" class="btn btn-o btn-primary">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15">Push Message <span class="text-bold">Table</span></h5>
+                    <div aria-label="First group" role="group" class="btn-group btn-group-xs pull-right">
+                            <button ng-click="setLimit(10)" class="btn btn-primary" type="button">
+                                10
+                            </button>
+                            <button ng-click="setLimit(20)" class="btn btn-primary" type="button">
+                                20
+                            </button>
+                            <button ng-click="setLimit(50)" class="btn btn-primary" type="button">
+                                50
+                            </button>
+                            <button ng-click="setLimit(100)" class="btn btn-primary" type="button">
+                                100
+                            </button>
+                        </div>
+                        <br><br>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th ng-click="sort('title')" class="center no-border">Title</th>
+                                <th ng-click="sort('message')" class="center no-border">Message</th>
+                                <th ng-click="sort('at_time')" class="no-border">Schedule Time</th>
+                                <th ng-click="sort('status')" class="hidden-xs no-border">Status</th>
+                                <th ng-click="sort('status')" class="hidden-xs no-border">Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="pushmessage in pushmessages">
+                                <td class="center" scope="row">{{pushmessage.title}}</td>
+                                <td>{{pushmessage.messages}}</td>
+                                <td class="hidden-xs">{{pushmessage.at_time}}</td>
+                                <td class="hidden-xs">
+                                    <select ng-model="pushmessage.status" ng-options="option.id as option.name for option in options" ng-change="changeStatus(pushmessage.status, pushmessage.id)">
+                                        <option value="">Select</option>
+                                    </select>
+                                </td>
+                                <td class="hidden-xs">  {{pushmessage.created * 1000 | amDateFormat:'DD-MM-YYYY hh:mm a'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->

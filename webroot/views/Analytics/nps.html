@@ -1,0 +1,150 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Net Promoter Score </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+
+<div class="container-fluid container-fullw padding-top-0">
+
+    <div class="row margin-5">
+        <div class="col-lg-6">
+            <input type="text" id="datarangeSel" name="range" />
+        </div>
+        <div class="col-lg-6">
+            <a href="/customers/exportToExcel" target="_new" class="btn btn-success pull-right"><i class="ti-download"></i> Download</a>
+        </div>
+    </div>
+
+    <div class="col-lg-12 load1" ng-class="{csspinner:isLoading}">
+        <div class="panel panel-white">
+            <div class="panel-body">
+                <canvas width="400" id="topChart" class="chart-base" chart-type="topChart.type" chart-legend="true" chart-data="topChart.data" chart-series="topChart.series" chart-labels="topChart.labels" chart-options="topChart.options">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-green">
+                <div class="panel-body no-padding">
+                    <div class="space10 padding-15">
+                        <h3 class="text-bold text-small text-white text-uppercase no-margin">Promoters <i class="fa fa-arrow-circle-o-right"></i></h5>
+                            <h2 class="text-white margin-top-15 margin-bottom-10">{{npsSummary.promoters}}%</h2>
+                            <span class="text-extra-small">They are most likely to promote your store</span>
+                    </div>
+                    <canvas id="prChart" class="chart-base height-80" chart-colours="prChart.colors" chart-type="prChart.type" chart-legend="false" chart-data="prChart.data" chart-series="prChart.series" chart-labels="prChart.labels" chart-options="prChart.options">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-grey">
+                <div class="panel-body no-padding">
+                    <div class="space10 padding-15">
+                        <h5 class="text-bold text-small text-dark text-uppercase no-margin">Passive <i class="fa fa-arrow-circle-o-right"></i></h5>
+                        <h2 class="text-white margin-top-15 margin-bottom-10">{{npsSummary.passive}}%</h2>
+                        <span class="text-extra-small">They are neutral to your store <br /> &nbsp;</span>
+                    </div>
+                    <canvas id="psChart" class="chart-base height-80" chart-colours="psChart.colors" chart-type="psChart.type" chart-legend="false" chart-data="psChart.data" chart-series="psChart.series" chart-labels="psChart.labels" chart-options="prChart.options">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-orange">
+                <div class="panel-body no-padding">
+                    <div class="space10 padding-15">
+                        <h5 class="text-bold text-small text-white text-uppercase no-margin">Demoters <i class="fa fa-arrow-circle-o-right"></i></h5>
+                        <h2 class="text-white margin-top-15 margin-bottom-10">{{npsSummary.demoters}}%</h2>
+                        <span class="text-extra-small">They are most likely to demote your store</span>
+                    </div>
+                    <canvas id="deChart" class="chart-base height-80" chart-colours="deChart.colors" chart-type="deChart.type" chart-legend="false" chart-data="deChart.data" chart-series="deChart.series" chart-labels="deChart.labels" chart-options="prChart.options">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-azure">
+                <div class="panel-body no-padding">
+                    <div class="space10 padding-15">
+                        <h5 class="text-bold text-small text-white text-uppercase no-margin">NPS Score <i class="fa fa-arrow-circle-o-right"></i></h5>
+                        <h2 class="text-white margin-top-15 margin-bottom-10">{{npsSummary.actualNPS}}</h2>
+                        <span class="label background-light text-dark margin-top-10 margin-right-5">{{npsSummary.totalCount}}</span>
+                        <span class="text-extra-small">total customers<br>&nbsp;</span>
+                    </div>
+                    <div class="min-height-80">
+                        <div class="padding-top-20">
+                            <div class="progress-xs no-radius background-dark no-margin progress ng-isolate-scope" value="89" type="white">
+                                <uib-progressbar value="npsSummary.actualNPS + 100" max="200" class="progress-xs no-radius background-dark no-margin" type="white"></uib-progressbar>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-12 center-container">
+            <div class="width-5">
+                <div class="panel panel-purple no-radius no-border">
+                    <div class="panel-body no-padding">
+                        <div class="space10 padding-15">
+                            <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin">Gender analysis <i class="fa fa-arrow-circle-o-right"></i></h5>
+                            <div class="block text-center">
+                                <div>
+                                    <h2 class="text-white text-bold margin-top-5 margin-bottom-5">{{genderKnobs.knVal}}%</h2>
+                                    <span class="text-white-transparent margin-bottom-5 block">{{genderKnobs.knText}}</span>
+                                </div>
+                                <div class="height-80 margin-bottom-10">
+                                    <!-- /// controller:  'KnobCtrl1' -  localtion: assets/js/controllers/dashboardCtrl.js /// -->
+                                    <div class="inline-block margin-right-25" >
+                                        <ui-knob value="genderKnobs.knob1" options="genderKnobs.options"></ui-knob><span class="text-white block">Female</span>
+                                    </div>
+                                    <!-- /// controller:  'KnobCtrl2' -  localtion: assets/js/controllers/dashboardCtrl.js /// -->
+                                    <div class="inline-block margin-right-25" >
+                                        <ui-knob value="genderKnobs.knob2" options="genderKnobs.options"></ui-knob><span class="text-white block">Male</span>
+                                    </div>
+                                    <div class="inline-block margin-right-25" >
+                                        <ui-knob value="genderKnobs.knob3" options="genderKnobs.options"></ui-knob><span class="text-white block">Unspecified</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <div class="col-lg-7">
+            <div class="panel panel-light-blue no-radius no-border">
+                <div class="panel-body no-padding">
+                    <div class="space10 padding-15">
+                        <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin">Age-wise analysis <i class="fa fa-arrow-circle-o-right"></i></h5>
+                        <div class="block text-center">
+                            <div>
+                                <h2 class="text-white text-bold margin-top-5 margin-bottom-5">{{ageKnobs.knVal}}%</h2>
+                                <span class="text-white-transparent margin-bottom-5 block">{{ageKnobs.knText}}</span>
+                            </div>
+                            <div class="height-80 margin-bottom-10">
+                                 /// controller:  'KnobCtrl1' -  localtion: assets/js/controllers/dashboardCtrl.js /// 
+                                <div class="inline-block margin-right-25" >
+                                    <ui-knob value="ageKnobs.knob1" options="ageKnobs.options"></ui-knob><span class="text-white block">18-24</span>
+                                </div>
+                                 /// controller:  'KnobCtrl2' -  localtion: assets/js/controllers/dashboardCtrl.js /// 
+                                <div class="inline-block margin-right-25" >
+                                    <ui-knob value="ageKnobs.knob2" options="ageKnobs.options"></ui-knob><span class="text-white block">25-32</span>
+                                </div>
+                                <div class="inline-block margin-right-25" >
+                                    <ui-knob value="ageKnobs.knob3" options="ageKnobs.options"></ui-knob><span class="text-white block">33-40</span>
+                                </div>
+                                <div class="inline-block margin-right-25" >
+                                    <ui-knob value="ageKnobs.knob4" options="ageKnobs.options"></ui-knob><span class="text-white block">40+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
+</div>

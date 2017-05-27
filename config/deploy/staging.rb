@@ -1,0 +1,6 @@
+set :domain, 'bnew.zakoopi.com'
+set :deploy_to, '/var/www/bnew.zakoopi.com'
+set :repository, 'https://github.com/samiksarkar/bsnAngular.git'
+set :branch, 'master'
+set :user, 'ubuntu'
+set :identity_file, 'staging.pem'

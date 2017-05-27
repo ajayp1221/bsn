@@ -1,0 +1,50 @@
+2016-05-11 10:10:07 Error: [Cake\Core\Exception\MissingPluginException] Plugin Cake/ElasticSearch could not be found.
+Exception Attributes: array (
+  'plugin' => 'Cake/ElasticSearch',
+)
+Stack Trace:
+#0 D:\bsnAngular\config\bootstrap.php(195): Cake\Core\Plugin::load('Cake/ElasticSea...', Array)
+#1 D:\bsnAngular\bin\cake.php(31): include('D:\\bsnAngular\\c...')
+#2 {main}
+
+
+2016-05-11 10:22:46 Error: [Cake\Core\Exception\MissingPluginException] Plugin Cake/ElasticSearch could not be found.
+Exception Attributes: array (
+  'plugin' => 'Cake/ElasticSearch',
+)
+Stack Trace:
+#0 D:\bsnAngular\config\bootstrap.php(195): Cake\Core\Plugin::load('Cake/ElasticSea...', Array)
+#1 D:\bsnAngular\bin\cake.php(31): include('D:\\bsnAngular\\c...')
+#2 {main}
+
+
+2016-05-11 10:25:38 Error: [Cake\Core\Exception\MissingPluginException] Plugin Cake/ElasticSearch could not be found.
+Exception Attributes: array (
+  'plugin' => 'Cake/ElasticSearch',
+)
+Stack Trace:
+#0 D:\bsnAngular\config\bootstrap.php(195): Cake\Core\Plugin::load('Cake/ElasticSea...', Array)
+#1 D:\bsnAngular\bin\cake.php(31): include('D:\\bsnAngular\\c...')
+#2 {main}
+
+
+2016-05-11 10:25:43 Error: [Cake\Core\Exception\MissingPluginException] Plugin Cake/ElasticSearch could not be found.
+Exception Attributes: array (
+  'plugin' => 'Cake/ElasticSearch',
+)
+Stack Trace:
+#0 D:\bsnAngular\config\bootstrap.php(195): Cake\Core\Plugin::load('Cake/ElasticSea...', Array)
+#1 D:\bsnAngular\bin\cake.php(31): include('D:\\bsnAngular\\c...')
+#2 {main}
+
+
+2016-05-11 10:26:09 Error: [Cake\Core\Exception\MissingPluginException] Plugin Cake/ElasticSearch could not be found.
+Exception Attributes: array (
+  'plugin' => 'Cake/ElasticSearch',
+)
+Stack Trace:
+#0 D:\bsnAngular\config\bootstrap.php(195): Cake\Core\Plugin::load('Cake/ElasticSea...', Array)
+#1 D:\bsnAngular\bin\cake.php(31): include('D:\\bsnAngular\\c...')
+#2 {main}
+
+

@@ -1,0 +1,116 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Social Share</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw padding-bottom-10">
+    <div class="row">
+        <form name="Form" id="form1" novalidate ng-submit="form.submit(Form)"  enctype="multipart/form-data" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+            <div class="col-sm-6 col-lg-6">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        <fieldset>
+                            <legend>
+                                Create Post
+                            </legend>
+
+                            <div class="form-group" ng-class="{'has-error':Form.description.$dirty && Form.description.$invalid, 'has-success':Form.description.$valid}">
+                                <label class="control-label"> Name <span class="symbol required"></span> </label>
+                                <textarea placeholder="Enter your Name" class="form-control autosize area-animated msd-elastic: \n;" name="description" ng-model="frmData.description" required></textarea>
+                                <span class="error text-small block" ng-if="Form.description.$dirty && Form.description.$invalid">Description is required</span>
+                                <span class="success text-small" ng-if="Form.description.$valid">Thank You!</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="file_image">Picture:</label>
+                                <span class="btn btn-primary btn-o btn-file">
+                                    Select Picture
+                                    <input type="file" class="form-control" name="file_image" ng-model="frmData.file_image" id="file_image"/>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <h5>Share On:</h5>
+                                <div class="checkbox clip-check check-primary">
+                                    <input type="checkbox" id="checkbox6" name="facebook" ng-model="frmData.facebook" value="1">
+                                    <label for="checkbox6">
+                                        Facebook
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary">
+                                    <input type="checkbox" id="checkbox7" name="twitter" ng-model="frmData.twitter" value="1">
+                                    <label for="checkbox7">
+                                        Twitter
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':Form.schedule_date.$dirty && Form.schedule_date.$invalid, 'has-success':Form.schedule_date.$valid}">
+                                <label class="control-label"> Campaign Schedule <span class="symbol required"></span> </label>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Select day and time" class="dtime form-control" name="send_date" ng-model="frmData.schedule_date" required />
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <span class="error text-small block" ng-if="Form.schedule_date.$dirty && Form.schedule_date.$invalid">DateTime is required</span>
+                                <span class="success text-small" ng-if="Form.schedule_date.$valid">Thank You!</span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        <fieldset>
+                            <legend>
+                                Select Social Media
+                            </legend>
+
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item no-radius no-margin no-border-top no-border-left no-border-right">
+                                        <div style="min-height: 50px; ">
+
+                                            <a class="btn btn-primary pull-right" href="/social-connections/fbcb" ng-if="!fbConnected">Connect</a>
+                                            <button class="btn btn-warning pull-right" ng-click="disconnect('facebook')" ng-if="fbConnected">Disconnect</button>
+
+                                            <letter-icon data-icon="fa fa-facebook" class="pull-left margin-right-10" box="round" color="#6F83B6" color-hover="#4862A3"></letter-icon>
+                                            <span class="block">Facebook</span> 
+                                            <span class="text-small text-light" ng-if="!fbConnected">Please connect you facebook otherwise post can't be shared</span>
+                                            <div class="clearfix"></div>
+                                            <div ng-if="fbConnected" style="margin: 15px;">
+                                                <div ng-repeat="(index, doc) in fbPages" style="min-height: 30px;">
+                                                    <div class="checkbox clip-check check-success checkbox-inline">
+                                                        <input type="checkbox" id="fbpi-{{index}}" ng-model="frmData.fbpage_ids[doc.id]" name="fbpage_ids[]" value="{{doc.id}}" />
+                                                        <label for="fbpi-{{index}}">
+                                                            {{doc.name}}
+                                                        </label>
+                                                    </div>
+                                                    <img class="img-rounded pull-right" src="//graph.facebook.com/{{doc.id}}/picture" height="30" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item no-radius no-margin no-border-top no-border-left no-border-right">
+                                        <div style="min-height: 50px; ">
+                                            <a class="btn btn-primary pull-right" href="/social-connections/twcb" ng-if="!twConnected">Connect</a>
+                                            <button class="btn btn-warning pull-right" ng-click="disconnect('twitter')" ng-if="twConnected">Disconnect</button>
+
+                                            <letter-icon data-icon="fa fa-twitter" class="pull-left margin-right-10" box="round" color="#79BEF1" color-hover="#55ACEE"></letter-icon>
+                                            <span class="block">Twitter</span> 
+                                            <span class="text-small text-light" ng-if="!twConnected">Please connect you twitter otherwise post can't be shared</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>  
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

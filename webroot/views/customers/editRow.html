@@ -1,0 +1,61 @@
+<form>
+    <table class="table no-bg">
+        <tr>
+            <td>Type</td>
+            <td>
+                <input type="hidden" name="id" value="{{p.id}}">
+                <input class="form-control" type="text" name="mes" class="w100" ng-model="p.name">
+            </td>
+            <td>Contact Number:</td>
+            <td>
+                <input class="form-control" type="text" name="contact_no" class="w180" ng-model="p.contact_no">
+            </td>
+            <td>Email:</td>
+            <td>
+                <input class="form-control" type="text" name="email" class="w180" ng-model="p.email">
+            </td>
+        </tr>
+        <tr>
+            <td>Age </td>
+            <td>
+                <input class="form-control" type="text" name="age" class="w120" ng-model="p.age">
+            </td>
+            <td>Dob</td>
+            <td>
+                <input class="form-control" type="text" name="dob" class="w100" ng-model="p.dob">
+            </td>
+            <td>Doa </td>
+            <td>
+                <input class="form-control" type="text" name="doa" class="w120" ng-model="p.doa">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Gender:
+            </td>
+            <td>
+                <div class="radio clip-radio radio-primary radio-inline">
+                    <input id="radio1" type="radio" name="gender{{$index}}" value="0" ng-model="p.gender">
+                    <label for="Female"> Female </label>
+                    <input id="radio1" type="radio" name="gender{{$index}}" value="0" ng-model="p.gender">
+                    <label for="Male"> Male </label>
+                </div>
+            </td>
+            <td>Opt In </td>
+            <td>
+                <div class="radio clip-radio radio-primary radio-inline">
+                    <input type="radio" name="opt_in{{$index}}" value="1" ng-model="p.opt_in">
+                    <label for="Yes"> Yes </label>
+                    <input type="radio" name="opt_in{{$index}}" value="0" ng-model="p.opt_in">
+                    <label for="No"> No </label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input type="submit" class="btn btn-primary btn-sm margin-right-15" value=" save " onclick="save(p);">
+                    <input type="button" class="btn btn-primary btn-sm" value=" cancel" ng-click="setEditId(-1)">
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>

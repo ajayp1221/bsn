@@ -1,0 +1,192 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Loyalty</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: IMAGES AND THUMBNAILS -->
+<div class="container-fluid container-fullw" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <div class="col-lg-6 col-md-12">
+                        <h5 class="over-title margin-bottom-15"><span class="text-bold">Add Points</span></h5>
+                        <form name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <div class="form-group" ng-class="{'has-error':Form.contact_one.$dirty && Form.contact_one.$invalid, 'has-success':Form.contact_one.$valid}">
+                                <input type="text" class="form-control" name="contact_one" ng-model="lyltData.contact_one" required placeholder="Enter phone Number">
+                                <span class="error text-small block" ng-if="Form.contact_one.$dirty && Form.contact_one.$invalid">Mobile number is required</span>
+                                <span class="success text-small" ng-if="Form.contact_one.$valid">Thank You!</span>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':Form.contact_two.$dirty && Form.contact_two.$invalid, 'has-success':Form.contact_two.$valid}">
+                                <input type="text" class="form-control" name="contact_two" ng-model="lyltData.contact_two" required compare-to="lyltData.contact_one" placeholder="Confirm Phone Number">
+                                <span class="error text-small block" ng-if="Form.contact_two.$dirty && Form.contact_two.$invalid">Please confirm mobile number</span>
+                                <span class="success text-small" ng-if="Form.contact_two.$valid">Thank You!</span>
+                            </div>
+                            <div class="form-group">
+                                <span ng-if="lsettings['loyalty-message-cr'][0]['meta_value'] != ''">
+                                    <textarea data-tp="cr" ng-model="lyltData.comments" ng-keyup="updateMsg($event)" placeholder="Default Text" class="form-control" ng-value="lyltData.comments">{{ lyltData.comments }}</textarea>
+                                    <span class="text-extra-small text-success" style="display: none;">Message template update for next time.</span>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':Form.aPoints.$dirty && Form.aPoints.$invalid, 'has-success':Form.aPoints.$valid}">
+                                <label for="Enter-points">
+                                    Enter points
+                                </label>
+                                <input type="number" class="form-control" ng-model="aPoints" name="aPoints" required min="1" ng-keyup="updateAAmount($event)" placeholder="Enter points">
+                                <span class="error text-small block" ng-if="Form.aPoints.$dirty && Form.aPoints.$invalid">Please add value greater then 0</span>
+                                <span class="success text-small" ng-if="Form.aPoints.$valid">Thank You!</span>
+                            </div>
+                            <span class="text-bold">OR</span>
+                            <div class="form-group" ng-class="{'has-error':Form.aAmount.$dirty && Form.aAmount.$invalid, 'has-success':Form.aAmount.$valid}">
+                                <label for="Enter-amount-of-total-purchase">
+                                    Enter amount of total purchase
+                                </label>
+                                <input type="number" class="form-control" ng-model="aAmount" name="aAmount" ng-keyup="updateAPoints($event)" required min="1" placeholder="Enter amount of total purchase">
+                                <span class="error text-small block" ng-if="Form.aAmount.$dirty && Form.aAmount.$invalid">Please add value greater then 0</span>
+                                <span class="success text-small" ng-if="Form.aAmount.$valid">Thank You!</span>
+                            </div>
+                            <button type="submit" class="btn btn-o btn-primary">
+                                Go
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <h5 class="over-title margin-bottom-15"><span class="text-bold">Redeem Point</span></h5>
+                        <form name="Form2" id="form2" novalidate="" ng-submit="form.submit2(Form2)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <div class="form-group" ng-class="{'has-error':Form2.contact_one.$dirty && Form2.contact_one.$invalid, 'has-success':Form2.contact_one.$valid}">
+                                <input type="text" class="form-control" name="contact_one" ng-model="lylt2Data.contact_one" required placeholder="Enter phone Number">
+                                <span class="error text-small block" ng-if="Form2.contact_one.$dirty && Form2.contact_one.$invalid">Mobile number is required</span>
+                                <span class="success text-small" ng-if="Form2.contact_one.$valid">Thank You!</span>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':Form2.contact_two.$dirty && Form2.contact_two.$invalid, 'has-success':Form2.contact_two.$valid}">
+                                <input type="text" class="form-control" name="contact_two" ng-model="lylt2Data.contact_two" required compare-to="lylt2Data.contact_one" placeholder="Confirm Phone Number">
+                                <span class="error text-small block" ng-if="Form2.contact_two.$dirty && Form2.contact_two.$invalid">Please confirm mobile number</span>
+                                <span class="success text-small" ng-if="Form2.contact_two.$valid">Thank You!</span>
+                            </div>
+                            <div class="form-group">
+                                <span ng-if="lsettings['loyalty-message-dr'][0]['meta_value'] != ''">
+                                    <textarea data-tp="dr" ng-model="lylt2Data.comments" ng-keyup="updateMsg($event)" placeholder="Default Text" class="form-control" ng-value="lsettings['loyalty-message-cr'][0]['meta_value']">{{ lsettings['loyalty-message-cr'][0]['meta_value']}}</textarea>
+                                    <span class="text-extra-small text-success" style="display: none;">Message template update for next time.</span>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':Form2.rPoints.$dirty && Form2.rPoints.$invalid, 'has-success':Form2.rPoints.$valid}">
+                                <label for="Enter-points">
+                                    Enter points
+                                </label>
+                                <input type="number" class="form-control" ng-model="rPoints" name="rPoints" required min="1" ng-keyup="updateRAmount($event)" placeholder="Enter points">
+                                <span class="error text-small block" ng-if="Form2.rPoints.$dirty && Form2.rPoints.$invalid">Please add value greater then 0</span>
+                                <span class="success text-small" ng-if="Form2.rPoints.$valid">Thank You!</span>
+                            </div>
+                            <span class="text-bold">OR</span>
+                            <div class="form-group" ng-class="{'has-error':Form2.rAmount.$dirty && Form2.rAmount.$invalid, 'has-success':Form2.rAmount.$valid}">
+                                <label for="Enter-amount-of-total-purchase">
+                                    Enter amount of total purchase
+                                </label>
+                                <input type="number" class="form-control" ng-model="rAmount" name="rAmount" ng-keyup="updateRPoints($event)" required min="1" placeholder="Enter amount to redeem">
+                                <span class="error text-small block" ng-if="Form2.rAmount.$dirty && Form2.rAmount.$invalid">Please add value greater then 0</span>
+                                <span class="success text-small" ng-if="Form2.rAmount.$valid">Thank You!</span>
+                            </div>
+                            <button type="submit" class="btn btn-o btn-primary">
+                                Go
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col-lg-12">
+                        <div class="center"><br/>
+                            <button class="btn btn-dark-azure" ng-click="openSettings()">SETTINGS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Loyalty Program Members</span></h5>
+                    <div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control ng-valid ng-valid-mask ng-empty ng-touched ng-dirty ng-valid-parse" name="search" placeholder="mobile no. or name" ng-model="searchKeyword" style="height: 35px;" ng-keyup="searchKeyup($event)">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" ng-click="search()">
+                                        <i class="fa fa-search"></i>
+                                        Search!
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th class="center no-border">Number</th>
+                                <th class="no-border">Name</th>
+                                <th class="hidden-xs no-border">Total Points</th>
+                                <th class="no-border">Redeemed</th>
+                                <th class="hidden-xs no-border">Net Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="member in layalty.members">
+                                <td class="center" scope="row">
+                                    <a ui-sref="loyalty.ledger({number:member.customer.contact_no,code:member.id})">{{member.customer.contact_no}}</a>
+                                </td>
+                                <td>{{member.customer.name}}</td>
+                                <td class="hidden-xs">{{member.total_points}}</td>
+                                <td>{{member.points_used}}</td>
+                                <td class="hidden-xs">{{member.points_left}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="loyaltySettings.html">
+<div class="modal-header">
+    Settings
+</div>
+<form id="lSettingsFrm" class="margin-10" method="post" action="/loyalty/loyalty-settings">
+    <input type="hidden" name="loyalty-conversion-ratio-cr" ng-value="prvm.conversionRatioCr" />
+    <input type="hidden" name="loyalty-conversion-ratio-dr" ng-value="prvm.conversionRatioDr" />
+    <div class="form-group">
+        <label for="loyalty-conversion-ratio-cr">Points Ratio for Credit</label>
+        <div class="input-group">
+            <div class="input-group-addon">Rs. 100 purchase = </div>
+            <input type="text" value="25" ng-model="prvm.ratioPointsCr" class="form-control" id="loyalty-conversion-ratio-cr" name="conversion-ratio" placeholder="points">
+            <div class="input-group-addon"> points</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loyalty-conversion-ratio-dr">Points Ratio for Debit</label>
+        <div class="input-group">
+            <div class="input-group-addon">100 Points = </div>
+            <input type="text" value="25" ng-model="prvm.ratioPointsDr" class="form-control" id="loyalty-conversion-ratio-dr" name="conversion-ratio" placeholder="Rs.">
+            <div class="input-group-addon">/= Rs</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loyalty-min-balance-4-redemption">Redemption Minimum Balance </label>
+        <div class="input-group">
+            <input type="text" ng-model="prvm.rMinLimit " value="0" class="form-control" id="loyalty-min-balance-4-redemption" name="loyalty-min-balance-4-redemption" placeholder="points">
+            <div class="input-group-addon"> points</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loyalty-max-award-a-day">Max award points per day </label>
+        <div class="input-group">
+            <input type="text" ng-model="prvm.aMaxLimit" value="4000" class="form-control" id="loyalty-max-award-a-day" name="loyalty-max-award-a-day" placeholder="points">
+            <div class="input-group-addon"> points</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Save</button>
+        <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+</script>

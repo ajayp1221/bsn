@@ -1,0 +1,273 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Customers </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-lg-4 col-sm-4">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <div class="load1" ng-class="{csspinner:isSendingData}">
+                        <form name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <div class="row">
+                                <input type="hidden" name="id" ng-model="cstData.id" />
+                                <fieldset>
+                                    <legend>
+                                        Add/Update Customer
+                                    </legend>
+
+                                    <div class="form-group" ng-class="{'has-error':Form.name.$dirty && Form.name.$invalid, 'has-success':Form.name.$valid}">
+                                        <label class="control-label"> Name <span class="symbol required"></span> </label>
+                                        <input type="text" class="form-control" name="name" ng-model="cstData.name" required />
+                                        <span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">Name is required</span>
+                                        <span class="success text-small" ng-if="Form.name.$valid">Thank You!</span>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error':Form.gender.$dirty && Form.gender.$invalid, 'has-success':Form.gender.$valid}">
+                                        <label class="control-label block"> Gender <span class="symbol required"></span> </label>
+                                        <div class="clip-radio radio-primary">
+                                            <input type="radio" id="wd-female" name="gender" value="0" ng-model="cstData.gender" required>
+                                            <label for="wd-female"> Female </label>
+                                            <input type="radio" id="wd-male" name="gender" value="1" ng-model="cstData.gender" required>
+                                            <label for="wd-male"> Male </label>
+                                        </div>
+                                        <span class="error text-small block" ng-if="Form.gender.$dirty && Form.gender.$error.required">Gender is required.</span>
+                                        <span class="success text-small block" ng-if="Form.gender.$valid && form.gender == 'male'">Thank You, Mr. {{form.name}}!</span>
+                                        <span class="success text-small block" ng-if="Form.gender.$valid && form.gender == 'female'">Thank You, Mrs. {{form.name}}!</span>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error':Form.contact_no.$dirty && Form.contact_no.$invalid, 'has-success':Form.contact_no.$valid}">
+                                        <label class="control-label"> Contact No. <span class="symbol required"></span> </label>
+                                        <input type="text" class="form-control" name="contact_no" ng-model="cstData.contact_no" required />
+                                        <span class="error text-small block" ng-if="Form.contact_no.$dirty && Form.contact_no.$invalid">Contact Number is required</span>
+                                        <span class="success text-small" ng-if="Form.contact_no.$valid">Wonderful!</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid, 'has-success':Form.email.$valid}">
+                                        <label class="control-label"> Email </label>
+                                        <input type="email" class="form-control" name="email" ng-model="cstData.email">
+                                        <span class="error text-small block" ng-if="Form.email.$error.email">Please, enter a valid email address.</span>
+                                    </div>
+
+<!--                                    <div class="form-group">
+                                        <label class="control-label"> Age </label>
+                                        <input type="number" class="form-control" name="age" ng-model="cstData.age" />
+                                    </div>-->
+
+
+                                    <div class="form-group">
+                                        <label class="control-label"> Date of Birth </label>
+                                        <input data-date-time-picker type="text" class="dtime form-control" name="dob" ng-model="cstData.dob" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"> Date of Anniversary </label>
+                                        <input data-date-time-picker type="text" class="dtime form-control" name="doa" ng-model="cstData.doa" />
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-primary">
+                                            Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
+                                            Reset
+                                        </button>
+                                        <!--                                    <button class="btn btn-default ng-binding">
+                                                                                checkValid = false
+                                                                            </button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-white">
+                <div class="panel-heading">
+                    <h4>Upload Bulk Contacts (.csv file)</h4>
+                </div>
+                <div class="panel-body">
+                    <span class="btn btn-primary btn-o btn-file">
+                        Select CSV
+                        <input type="file" nv-file-select uploader="uploader" accept=".csv" />
+                    </span>
+                    <span class="margin-left-15 btn btn-primary btn-o btn-file">
+                        <a href="/sample.csv">Sample CSV</a>
+                    </span>
+                    <a href="" popover-placement="right"  uib-popover="Download sample csv" popover-placement="top" popover-title=""><i class="fa fa-question-circle text-dark-transparent margin-left-5"></i></a>
+                    <table>
+                        <tr ng-repeat="item in uploader.queue">
+                            <!--                            <td>
+                                                            <strong>{{ item.file.name }}</strong>
+                                                        </td>-->
+                            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size / 1024 / 1024|number:2 }} MB</td>
+                            <td ng-show="uploader.isHTML5">
+                                <div class="progress progress-xs margin-bottom-0">
+                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                </div>
+                            </td>
+                            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
+                            <td nowrap>
+                                <button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                </button>
+                                <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-sm-8 load1" ng-class="{csspinner:isLoading}">
+            <div class="panel panel-white">
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" ng-model="srchkey" class="form-control ng-valid ng-valid-mask ng-empty ng-touched ng-dirty ng-valid-parse" name="srchkey" placeholder="Search with Name, Email or Mobile No"  ng-model="x" style="">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" style="padding: 6.5px 12px;" ng-click="searchNowBtn()">
+                                    <i class="fa fa-search"></i>
+                                    Go!
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <a href="/customers/export-to-excel" class="btn btn-success btn-wide btn-scroll btn-scroll-left ti-download">
+                            <span>Export Data</span>
+                        </a>
+                        <a ng-if="selectedStore.is_customer_feedback ==1" href="/customers/export-to-excel-by-nps" class="btn btn-success btn-wide btn-scroll btn-scroll-left ti-download">
+                            <span>Export Data By NPS</span>
+                        </a>
+                        <a href="/customers/google-contact-api" class="btn btn-success btn-wide btn-scroll btn-scroll-left ti-download">
+                            <span>Export to Google</span>
+                        </a>
+                        <div aria-label="First group" role="group" class="btn-group btn-group-xs pull-right">
+                            <button ng-click="setLimit(10)" class="btn btn-primary" type="button">
+                                10
+                            </button>
+                            <button ng-click="setLimit(20)" class="btn btn-primary" type="button">
+                                20
+                            </button>
+                            <button ng-click="setLimit(50)" class="btn btn-primary" type="button">
+                                50
+                            </button>
+                            <button ng-click="setLimit(100)" class="btn btn-primary" type="button">
+                                100
+                            </button>
+                        </div>
+                        <br><br>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Details <span class="font-weight">(Total <i>{{pager.totalRec}}</i> customers) </span></th>
+                                    <th>Action </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="(index,cst) in customersData">
+                                <tr>
+                                    <td>
+                                        <div class="col-lg-6 col-sm-6" >
+                                            <a ng-click="$parent.sortBy('name')"><b>Name: </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;
+                                            {{cst.name}}
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >
+                                            <a ng-click="$parent.sortBy('contact_no')"><b>Contact No: </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;
+                                            {{cst.contact_no}}
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6">
+                                            <a ng-click="$parent.sortBy('email')"><b>Email: </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;{{cst.email}}
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >
+                                            <a ng-click="$parent.sortBy('gender')"><b>Gender: </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;
+                                            {{cst.gender == 1 ? 'MALE' : (cst.gender == 2 ? 'Unspecified' : 'FEMALE')}}
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >
+                                            <a ng-click="$parent.sortBy('opt_in')"><b>Opted (Campaigns): </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;
+                                            {{cst.opt_in == 1 ? 'Yes' : 'No'}}
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >
+                                            <a ng-click="$parent.sortBy('age')"><b>Age: </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;
+                                            {{cst.age}} Years
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >
+                                            <a ng-click="$parent.sortBy('dob')"><b>DOB: </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;
+                                            {{cst.dob}}
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >
+                                            <a ng-click="$parent.sortBy('doa')"><b>DOA </b></a>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6" >&nbsp;
+                                            {{cst.doa}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button uib-tooltip="Delete Customer" tooltip-placement="left" type="button" class="btn btn-red btn-scroll btn-scroll-top ti-trash fa fa-trash-o" ng-click="removeCst(cst)">
+                                            <i class="fa fa-trash-o"></i>
+                                        </button><br/><br/>
+                                        <button uib-tooltip="Edit Customer" tooltip-placement="left" type="button" class="btn btn-primary btn-scroll btn-scroll-top ti-pencil fa fa-pencil" ng-click="editCst(cst)">
+                                            <i class="fa fa-pencil"></i>
+                                        </button><br/><br/>
+                                        <button uib-tooltip="Add New Measurement" tooltip-placement="left" type="button" id="editRowBtn{{cst.id}}" ng-if="selectedStore.is_customer_feedback ==1"
+                                                class="btn btn-dark-azure btn-scroll btn-scroll-top ti-layout ti-layout" ng-click="setEditId(cst.id)">
+                                            <i class="ti-layout"></i>
+                                        </button><br/><br/>
+                                        <button uib-tooltip="Customer visit on store" tooltip-placement="left" type="button"  ng-if="selectedStore.is_customer_feedback ==1"
+                                                class="btn btn-dark-azure btn-scroll btn-scroll-top ti-layout ti-layout" ng-click="cstVisit(cst.id)">
+                                            <i class="ti-layout-grid2-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr ng-show="editId === cst.id" ng-if="editId === cst.id">
+                            <form>
+                                <td colspan="7" ng-include src="'/views/customers/mesaurement.html'"></td>
+                            </form>
+                            </tr>
+                            <tr ng-show="cstVisit1 === cst.id" ng-if="cstVisit1 === cst.id">
+                                <td><b>No. of visit -: {{customerVisit}}</b></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div role="group" class="btn-group btn-group-xs pull-right">
+                            <button class="btn btn-default" type="button" ng-repeat="n in pager.totalPages" ng-class="{'btn-primary':pager.currentPg == n.vl}">
+                                <span ng-click="changePg(n.vl)" >{{n.vl}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .font-weight{
+        font-weight: normal !important
+    }
+    </style>

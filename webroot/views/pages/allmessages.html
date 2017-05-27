@@ -1,0 +1,82 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="sidebar.nav.pages.BLANKPAGE">Dashboard</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw padding-bottom-10">
+    <div class="row">
+        <div class="col-sm-12">
+
+
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-heading">
+                    <h4>{{cmp.compaign_name}}
+                        <p class="pull-right">Total Credits Used: {{cmp.cost_multiplier * cmp.total_msg}}   &nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </h4> 
+                </div>
+                <div class="panel-body">
+                    <div aria-label="First group" role="group" class="btn-group btn-group-xs pull-right">
+                        <button ng-click="setLimit(100)" class="btn btn-primary" type="button">
+                            100
+                        </button>
+                        <button ng-click="setLimit(200)" class="btn btn-primary" type="button">
+                            200
+                        </button>
+                        <button ng-click="setLimit(500)" class="btn btn-primary" type="button">
+                            500
+                        </button>
+                        <button ng-click="setLimit(1000)" class="btn btn-primary" type="button">
+                            1000
+                        </button>
+                    </div>
+                    <br><br>
+                    <table class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Customer
+                                </th>
+                                <th><a ng-click="sortBy('created')">Sent</a></th>
+                                <th><a ng-click="sortBy('cause')">Status</a></th>
+                                <th>Credits Used</th>
+                                <th>Redeemed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="msg in messages">
+                                <td>
+                                    {{msg.customer.name}}<br/>
+                                    {{msg.customer.contact_no}}
+                                </td>
+                                <td>
+                                    {{msg.created * 1000| amDateFormat:'DD-MM-YYYY hh:mm a'}}
+                                </td>
+                                <td>
+                                    <span ng-if="msg.cause == null">{{msg.open}}</span>
+                                    <span ng-if="msg.cause != null">{{msg.cause}}</span>
+                                </td>
+                                <td>{{msg.cost_multiplier}}</td>
+                                <td>
+                                    <span ng-if="msg.promo_code == ''">Promo Code Not Applied</span>
+                                    <span ng-if="msg.promo_code != ''">
+                                        <span ng-if="msg.used == 0">NO</span>
+                                        <span ng-if="msg.used == 1">YES</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div role="group" class="btn-group btn-group-xs pull-right">
+                        <button class="btn btn-default" type="button" ng-repeat="n in pager.totalPages" ng-class="{'btn-primary':pager.currentPg == n.vl}">
+                            <span ng-click="changePg(n.vl)" >{{n.vl}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- end: YOUR CONTENT HERE -->

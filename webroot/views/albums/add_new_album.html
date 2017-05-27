@@ -1,0 +1,58 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Your photos ( Select images you want to send )</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: IMAGES AND THUMBNAILS -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">New Album</span></h5>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-white">
+                                <form  name="Form" id="form" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                                    <div class="form-group" ng-class="{'has-error':Form.name.$dirty && Form.name.$invalid, 'has-success':Form.name.$valid}">
+                                        <label class="control-label"> Album Name <span class="symbol required"></span> </label>
+                                        <input type="text" class="form-control" name="name" ng-model="nwAlbm.name" required />
+                                        <span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">Name is required</span>
+                                        <span class="success text-small" ng-if="Form.name.$valid">Thank You!</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"> Upload Images </label>
+                                        <span class="btn btn-primary btn-o btn-file">
+                                            Select an image file
+                                            <input type="file" name="albumimages[]" multiple />
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: IMAGES AND THUMBNAILS -->
+<style>
+    .bgImg{
+        height: 200px;
+        background-color: #cccccc;
+        background-size: auto 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .nav-tabs > li {
+        width: 50%;
+    }
+
+</style>

@@ -1,0 +1,90 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Feedback Questions Analysis </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+
+<div class="container-fluid container-fullw padding-top-0">
+
+    <div class="row margin-5">
+        <div class="col-lg-4">
+            <input type="text" id="datarangeSel" name="range" />
+        </div>
+        <div class="col-lg-8">
+            <select ng-change="changeQue(this.value)" ng-model="currentQue" ng-options="q.id as q.question for q in allQuestions">
+                <!--                <option value="">Select Question</option>
+                                <option ng-repeat="q in allQuestions" value="{{q.id}}">{{q.id == selectedQue.id}} {{q.question}}</option>-->
+            </select>
+        </div>
+    </div>
+
+    <div class="col-lg-12 load1" ng-class="{csspinner:isLoading}">
+
+        <div class="row" ng-if="queType == 1">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="col-lg-8">
+                        <canvas id="pie" class="chart-base" chart-type="multipleChoiceCH.type" chart-data="multipleChoiceCH.data" chart-labels="multipleChoiceCH.labels" chart-legend="true"></canvas> 
+                        <button class="btn btn-default" ng-click="multipleChoiceCH.toggle()">Change Chart Type</button>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+
+                                <ul class="list-group">
+                                    <li ng-repeat="(i,doc) in data" class="list-group-item no-radius margin-5 no-border-top no-border-left no-border-right ">
+                                        <div class="row">
+                                            <div>
+                                                <a href="#"><letter-icon data="{{i}}" color="#7F8C8D" size="sm" class="margin-right-5"></letter-icon>
+                                                    {{i}}
+                                                    <span class="label background-light text-dark margin-top-10 margin-right-5 pull-right">{{doc}}</span>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <span class="block padding-top-10">
+                                                    <uib-progressbar value="doc" class="progress-xs no-radius background-dark no-margin" type="purple"></uib-progressbar>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="queType == 2">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <canvas id="barCh" class="chart-base" chart-type="ratingCH.type" chart-data="ratingCH.data" chart-labels="ratingCH.labels" chart-legend="true"></canvas> 
+                        <button class="btn btn-default" ng-click="ratingCH.toggle()">Change Chart Type</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="queType == 3">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <v-accordion class="vAccordion--default" control="firstAccordionControl">
+                        <v-pane ng-repeat="d in data" expanded="all">
+                            <v-pane-header>
+                                <h5>{{ d.title}} - {{ d.created }}</h5>
+                            </v-pane-header>
+                            <v-pane-content>
+                                <p>
+                                    {{ d.content}}
+                                </p>
+
+                            </v-pane-content>
+                        </v-pane>
+                    </v-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

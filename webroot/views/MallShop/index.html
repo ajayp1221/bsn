@@ -1,0 +1,70 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Mall Shop</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="load1" ng-class="{csspinner:isLoading}">
+                        <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <h5 class="text-bold">
+                                Add Mall Shop
+                            </h5>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-body">
+                                            <div class="form-group" ng-class="{'has-error':Form.name.$dirty && Form.name.$invalid, 'has-success':Form.name.$valid}">
+                                                <label class="control-label"> Shop Name <span class="symbol required"></span> </label>
+                                                <input type="text" placeholder="Enter Shop Name" class="form-control" name="name" ng-model="nwShop.name" required />
+                                                <span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">Shop Name is required</span>
+                                                <span class="success text-small" ng-if="Form.name.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <h5 class="over-title margin-bottom-15">Mall-Shop <span class="text-bold">Table</span></h5>
+                        <table class="table table-stylish" id="sample-table-1">
+                            <thead>
+                                <tr>
+                                    <th class="center no-border">ID</th>
+                                    <th class="no-border">Store Name</th>
+                                    <th class="hidden-xs no-border">Created</th>
+                                    <th class="no-border">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="shop in shops">
+                                    <td class="center" scope="row">{{shop.id}}</td>
+                                    <td>{{shop.name}}</td>
+                                    <td class="hidden-xs">{{shop.created * 1000| amDateFormat:'DD-MM-YYYY hh:mm a'}}</td>
+                                    <td>
+                                        <select ng-model="shop.status" ng-options="option.id as option.name for option in options" ng-change="changeStatus(shop.status, shop.id)">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="pagination ng-table-pagination">
+                            <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                                <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

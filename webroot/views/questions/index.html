@@ -1,0 +1,146 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Feedback Questions </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: STYLISH TABLE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-if="showAddNewForm" ng-class="{csspinner:isSendingData}">
+                <div class="panel-body">
+                    <!--<pre>{{queData| json:spacing}}</pre>-->
+                    <form name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                        <div class="center-container">
+                            <div class="center">
+                                <h5>Question Type</h5>
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="queData.question_type" ng-change="cleanOpts(1)" uib-btn-radio="1">
+                                    Multiple Choice
+                                </label>
+                                <label class="btn btn-default" ng-model="queData.question_type" ng-change="cleanOpts(2)" uib-btn-radio="2">
+                                    Rating Field
+                                </label>
+                                <label class="btn btn-default" ng-model="queData.question_type" ng-change="cleanOpts(3)" uib-btn-radio="3">
+                                    Descriptive
+                                </label>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <legend>
+                                    Settings
+                                </legend>
+                                <div ng-if="queData.question_type == 1">
+                                    <div ng-repeat="(indx,opt) in queData.options">
+                                        <div class="padding-5">
+                                            <div class="input-group">
+                                                <input class="form-control" ng-model="opt.option" placeholder="Options here.." />
+                                                <span class="input-group-btn">
+                                                    <a href="#" class="btn btn-warning" ng-click="removeOpt(indx)"><i class="ti-trash"></i></a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button class="btn btn-success" ng-click="addMoreOpt()" type="button"><i class="ti-plus"></i> Add More</button>
+                                    </div>
+                                </div>
+                                <div ng-if="queData.question_type == 2">
+                                    <div class="padding-5">
+                                        <div class="radio clip-radio radio-primary radio-inline">
+                                            <input type="radio" name="pointRt" ng-model="queData.options[0].option" value="2" id="point-rt-opt-a" />
+                                            <label for="point-rt-opt-a">5 Point smiley rating</label>
+                                        </div>
+                                        <div class="radio clip-radio radio-primary radio-inline">
+                                            <input type="radio" name="pointRt" ng-model="queData.options[0].option" value="3" id="point-rt-opt-b" />
+                                            <label for="point-rt-opt-b">10 Point number rating</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="queData.question_type == 3">
+                                    Descriptive questions don't have any other settings.
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <legend>
+                                    Question
+                                </legend>
+                                <div class="form-group" ng-class="{'has-error':Form.question.$dirty && Form.question.$invalid, 'has-success':Form.question.$valid}">
+                                    <!--<label class="control-label"> Question <span class="symbol required"></span> </label>-->
+                                    <textarea type="text" placeholder="Enter your Questions here" class="form-control" name="question" ng-model="queData.question" required></textarea>
+                                    <span class="error text-small block" ng-if="Form.question.$dirty && Form.question.$invalid">Question is required</span>
+                                    <span class="success text-small" ng-if="Form.question.$valid">Thank You!</span>
+                                </div>
+                            </fieldset>
+                            <button class="btn btn-success" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Question</h5>
+                    <div class="pull-right">
+                        <button class="btn btn-primary" ng-click="addNew()">Add New Question</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <v-accordion class="vAccordion--default" multiple>
+
+                        <v-pane ng-repeat="q in questions">
+                            <v-pane-header>
+                                {{q.question}} 
+                                <span ng-if="q.soft_deleted == 0" class="badge badge-success">Active</span>
+                                <span ng-if="q.soft_deleted == 1" class="badge badge-warning">Inactive</span>
+                            </v-pane-header>
+
+                            <v-pane-content>
+                                <div class="col-lg-6">
+                                    <div ng-if="q.question_type == 2">
+                                        <h5>Rating Type</h5>
+                                        <div>
+                                            <p ng-if="q.options[0].option == 2">5 Point smiley rating</p>
+                                            <p ng-if="q.options[0].option == 3">10 point number rating</p>
+                                        </div>
+                                    </div>
+                                    <div ng-if="q.question_type == 1">
+                                        <strong>Multiple Choice</strong>
+                                        <div ng-repeat="(i,o) in q.options">
+                                            {{i + 1}}){{o.option}}
+                                        </div>
+                                    </div>
+
+                                </div> 
+                                <div class="col-lg-6">
+                                    <div class="pull-right">
+                                        <a href="" class="btn-default btn"><i class="ti-arrow-up"></i></a>
+                                        <a href="" class="btn-default btn"><i class="ti-arrow-down"></i></a> | 
+                                        <a href="#" class="btn btn-default">Analytics</a>
+                                        <a href="#" ng-click="$parent.$parent.editQue(q)" class="btn btn-default">Edit</a>
+                                        <a href="#" ng-if="q.soft_deleted == 0" class="btn btn-warning" ng-click="deactivateQue(q.id)">Deactivate</a>
+                                        <a href="#" ng-if="q.soft_deleted == 1" class="btn btn-success" ng-click="activateQue(q.id)">Activate</a>
+                                    </div>
+                                </div>
+                            </v-pane-content>
+                        </v-pane>
+
+                    </v-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .is-expanded {
+        background: #eee;
+    }
+    .btn-group .active{
+        background: #003471;
+        color: #fff;
+    }
+</style>

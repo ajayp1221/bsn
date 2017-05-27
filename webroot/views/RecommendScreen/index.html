@@ -1,0 +1,78 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Recommend Friends </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="load1" ng-class="{csspinner:isSendingData}">
+                        <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <h5 class="text-bold">
+                                Recommend friends Screen {{newRs.discountOn}}
+                                <div ng-bind="newRs.active"></div>
+                            </h5>
+                            
+                            <!--<pre>{{newRS | json:spacing}}</pre>-->
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-body">
+                                            <div class="checkbox clip-check check-success checkbox-inline">
+                                                <input type="checkbox" ng-model="newRS.active"  id="checkbox11">
+                                                <label for="checkbox11">
+                                                    Is Active
+                                                </label>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.header_text.$dirty && Form.header_text.$invalid, 'has-success':Form.header_text.$valid}">
+                                                <label class="control-label"> Header Text <span class="symbol required"></span> </label>
+                                                <textarea class="form-control autosize area-animated msd-elastic: \n;" name="header_text" required ng-model="newRS.header_text"></textarea>
+                                                <span class="error text-small block" ng-if="Form.header_text.$dirty && Form.header_text.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.header_text.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.description.$dirty && Form.description.$invalid, 'has-success':Form.description.$valid}">
+                                                <label class="control-label">
+                                                    Description<span class="symbol required"></span>
+                                                </label>
+                                                <textarea class="form-control autosize area-animated msd-elastic: \n;" name="description" required ng-model="newRS.description"></textarea>
+                                                <span class="error text-small block" ng-if="Form.description.$dirty && Form.description.$invalid">Message is required</span>
+                                                <span class="success text-small" ng-if="Form.description.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="radio clip-radio radio-primary">
+                                                <input type="radio" id="radio3" name="vertical" ng-model="newRS.discountOn" value="0" />
+                                                <label for="radio3">
+                                                    Give discount in present visit
+                                                </label>
+                                            </div>
+                                            <div class="radio clip-radio radio-primary">
+                                                <input type="radio" id="radio4" name="vertical" ng-model="newRS.discountOn" value="1" />
+                                                <label for="radio4">
+                                                    Give discount in next visit
+                                                </label>
+                                                
+                                            </div>
+                                            <div class="form-group" ng-if="newRS.discountOn == 1">
+                                                <textarea required class="form-control autosize area-animated msd-elastic: \n;" name="receivers" ng-model="newRS.discountOnText"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                                <button type="submit" class="btn btn-o btn-primary">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

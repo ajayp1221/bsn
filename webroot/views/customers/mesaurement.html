@@ -1,0 +1,56 @@
+<div ng-controller="CstMsr">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>
+                    Select Product Category
+                </label>
+                <select ng-model="mes.select" ng-options="option.measurement_type as option.measurement_type for option in select">
+                    <option value="">Select Product Category</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="form-group">
+                <label>
+                    Type manually product category
+                </label>
+                <input class="form-control" placeholder="Type manually product category" type="text" ng-model="mes.type" />
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-primary" ng-click="toggleParams(mes)">Go</button>
+        </div>
+    </div>
+    <br/>
+    <div ng-show="showParams">
+        <div class="row" ng-repeat="(index,param) in paramList">
+            <div class="col-lg-5">
+                <div class="form-group">
+                    <label class="control-label"> Measurement Type </label>
+                    <input type="text" placeholder="{{measureType}}" class="form-control" ng-model="param.measurement_name" />
+                    <input type="hidden" ng-model="param.customer_id" />
+                    <input type="hidden" ng-model="param.measurement_type" />
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form-group">
+                    <label class="control-label"> Measurement Size </label>
+                    <input type="text" placeholder="{{measureSize}}"  class="form-control" ng-model="param.value" />
+                </div>
+            </div>
+            <div class="col-lg-2 links cl-effect-1 center">
+                <a href="#" ng-click="removeParam(index)"><i class="ti-close"></i></a>
+            </div>
+            <br/>
+        </div>
+        <div class="col-lg-4 ">
+            <button class="btn btn-primary right-align" ng-click="save(paramList)">Save</button>
+        </div>
+        <div class="row">
+            <div class="links cl-effect-1 center">
+                <a href="#" ng-click="addMoreParam(paramList[0].measurement_type)" class="text-warning"><i class="ti-plus"></i> Add Measurements</a>
+            </div>
+        </div>
+    </div>
+</div>

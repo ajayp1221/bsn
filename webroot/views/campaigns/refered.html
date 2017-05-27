@@ -1,0 +1,74 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Recommend Friends</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: STYLISH TABLE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="load1" ng-class="{csspinner:isLoading}">
+                        <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <h5 class="over-title margin-bottom-15">
+                                <span class="text-bold"> Recommend Friends</span>
+                            </h5>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-body">
+                                            <div class="form-group" ng-class="{'has-error':Form.message.$dirty && Form.message.$invalid, 'has-success':Form.message.$valid}">
+                                                <label class="control-label">
+                                                    Message <span class="symbol required"></span>
+                                                </label>
+                                                <span class="pull-right text-extra-small text-dark text-right" ng-bind-html="smsCounterText"></span>
+                                                <textarea class="form-control autosize area-animated msd-elastic: \n;" name="message" required ng-model="referdCmp.message"></textarea>
+                                                <span class="error text-small block" ng-if="Form.message.$dirty && Form.message.$invalid">Message is required</span>
+                                                <span class="success text-small" ng-if="Form.message.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+<!--                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Recommend Friends SMS Campaign History</span></h5>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th class="no-border">Contact Number</th>
+                                <th class="hidden-xs no-border">Redeemed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="message in messages">
+                                <td>{{message.customer.contact_no}}</td>
+                                <td ng-if="message.used == 1">
+                                    Redeemed
+                                </td>
+                                <td ng-if="message.used == 0">
+                                    Unused
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end STYLISH TABLE -->

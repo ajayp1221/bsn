@@ -1,0 +1,65 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Social Share All Post List</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw padding-bottom-10">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                    <div class="panel-body">
+                        <uib-tabset class="tabbable">
+                            <uib-tab heading="Schedule Post" select="schedulepost()">
+                                <table class="table table-stylish" id="sample-table-3">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th ng-click="sortSmsBy('schedule_date')" class="hidden-xs"><a>Schedule Date</a></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="d in scheduleData">
+                                    <tr>
+                                        <td>{{d.description}}</td>
+                                        <td>{{d.schedule_date}}</td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </uib-tab>
+                            <uib-tab heading="All Soical Post" select="allpost()">
+                                <table class="table table-stylish" id="sample-table-3">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th ng-click="sortSmsBy('created')" class="hidden-xs"><a>Add Date</a></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="d in allData">
+                                    <tr>
+                                        <td>{{d.description}}</td>
+                                        <td>{{d.created * 1000 | amDateFormat:'DD-MM-YYYY hh:mm a'}}</Td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->
+
+<style>
+    .bg-light-green{
+        position: inherit !important;
+    }
+    .bg-success{
+        position: inherit !important;
+    }
+    .nav-tabs > li {
+        width: 50%;
+    }
+    
+</style>

@@ -1,0 +1,192 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Your photos ( Select images you want to send )</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: IMAGES AND THUMBNAILS -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Albums Images</span></h5>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-white">
+                                <div ng-repeat="(index,album) in albums">
+                                    <div ng-if="album.albumimages.length > 0">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                <div class="checkbox clip-check check-success checkbox-inline">
+                                                    <input type="checkbox" ng-model="album.sAll" ng-change="$parent.selectAll(album, album.sAll)" id="checkbox{{album.id}}">
+                                                    <label for="checkbox{{album.id}}" class="text-bold">
+                                                        {{album.name}} ( {{album.albumimages.length}} )
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p class="text-small">
+                                                {{album.description}}
+                                            </p>
+                                            <div class="row">
+
+                                                <div class="col-sm-6 col-md-3" ng-repeat="(index,albumimage) in album.albumimages">
+                                                    <!--<pre>{{$parent.$parent.albums | json:spacing}}</pre>-->
+                                                    <a href="#" class="thumbnail">
+                                                        <div class="bgImg" ng-style="{'background-image':'url({{albumimage.android_api_img_large}})'}"></div>
+                                                    </a>
+                                                    <div class="checkbox clip-check check-success checkbox-inline">
+                                                        <input type="checkbox" ng-model="albumimage.selected" value="{{albumimage.id}}" id="checkbox{{albumimage.id}}">
+                                                        <label for="checkbox{{albumimage.id}}">
+                                                            <p hm-read-more
+                                                               hm-text="{{albumimage.description}}" 
+                                                               hm-limit="100" 
+                                                               hm-more-text="<b>read more</b>" 
+                                                               hm-less-text="<b>read less</b>"
+                                                               hm-dots-class="dots"
+                                                               hm-link-class="links">
+                                                            </p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <uib-tabset class="tabbable">
+                                    <uib-tab heading="E-Mail" select="loadEmail()">
+                                        <form  name="Form" id="form" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                                            <div class="radio clip-radio radio-primary">
+                                                <input type="radio" ng-model="nwAlbm.who_send" id="who_send1" name="who_send" value="1" />
+                                                <label for="who_send1">
+                                                    <span class="text-bold">People who redeemed a coupon earlier</span>(8 SMS Credits)
+                                                </label>
+                                            </div>
+                                            <input type="hidden" ng-model="nwAlbm.shareVia" value="email" />
+                                            <div class="radio clip-radio radio-primary">
+                                                <input type="radio" ng-model="nwAlbm.who_send" id="who_send2" name="who_send" value="2">
+                                                <label for="who_send2">
+                                                    <span class="text-bold">Type the email ids separated by commas... </span>
+                                                </label>
+                                            </div>
+                                            <div class="form-group" ng-if="nwAlbm.who_send == 2" ng-class="{'has-error':Form.receivers.$dirty && Form.receivers.$invalid, 'has-success':Form.receivers.$valid}">
+                                                <label>
+                                                    Add E-Mail Ids ( , separated) <span class="symbol required"></span>
+                                                </label>
+                                                <textarea required class="form-control autosize area-animated msd-elastic: \n;" name="receivers" ng-model="nwAlbm.receivers"></textarea>
+                                                <span class="error text-small block" ng-if="Form.receivers.$dirty && Form.receivers.$invalid">Please add few email ids.</span>
+                                                <span class="success text-small" ng-if="Form.receivers.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.subject.$dirty && Form.subject.$invalid, 'has-success':Form.subject.$valid}">
+                                                <label class="control-label"> Email Subject <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control" name="subject" ng-model="nwAlbm.subject" required />
+                                                <span class="error text-small block" ng-if="Form.subject.$dirty && Form.subject.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.subject.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.content.$dirty && Form.content.$invalid, 'has-success':Form.content.$valid}">
+                                                <label class="control-label">
+                                                    Email Content <span class="symbol required"></span>
+                                                </label>
+                                                <textarea ckeditor="options" required  name="content" ng-model="nwAlbm.content" ready="onReady()"></textarea>
+                                                <span class="error text-small block" ng-if="Form.content.$dirty && Form.content.$invalid">Email Content is required</span>
+                                                <span class="success text-small" ng-if="Form.content.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.maxviews.$dirty && Form.maxviews.$invalid, 'has-success':Form.maxviews.$valid}">
+                                                <label class="control-label"> Number of max views <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control" name="maxviews" ng-model="nwAlbm.maxviews" required />
+                                                <span class="error text-small block" ng-if="Form.maxviews.$dirty && Form.maxviews.$invalid">Number of maximum views is required</span>
+                                                <span class="success text-small" ng-if="Form.maxviews.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.expire.$dirty && Form.expire.$invalid, 'has-success':Form.expire.$valid}">
+                                                <label class="control-label"> Link Expire  <span class="symbol required"></span> </label>
+                                                <div class="input-group">
+                                                    <input type="text" class="dtime form-control" name="expire" ng-model="nwAlbm.expire" required />
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                                <span class="error text-small block" ng-if="Form.expire.$dirty && Form.expire.$invalid">DateTime is required</span>
+                                                <span class="success text-small" ng-if="Form.expire.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </uib-tab>
+                                    <uib-tab heading="SMS">
+                                        <form  name="Form1" id="form1" novalidate="" ng-submit="form1.submit(Form1)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                                            <div class="radio clip-radio radio-primary">
+                                                <input type="radio" ng-model="nwAlbm1.whos_send" id="whos_send1" name="whos_send" value="1">
+                                                <label for="whos_send1">
+                                                    <span class="text-bold">People who redeemed a coupon earlier</span>(8 SMS Credits)
+                                                </label>
+                                            </div>
+                                            <input type="hidden" ng-model="nwAlbm1.shareVia" />
+                                            <div class="radio clip-radio radio-primary">
+                                                <input type="radio" ng-model="nwAlbm1.whos_send" id="whos_send2" name="whos_send" value="2">
+                                                <label for="whos_send2">
+                                                    <span class="text-bold">Type the Contact Numbers separated by commas... </span>
+                                                </label>
+                                            </div>
+                                            <div class="form-group" ng-if="nwAlbm1.whos_send == 2" ng-class="{'has-error':Form1.contacts.$dirty && Form1.contacts.$invalid, 'has-success':Form1.contacts.$valid}">
+                                                <label>
+                                                    Add Contact Numbers ( , separated) <span class="symbol required"></span>
+                                                </label>
+                                                <textarea required class="form-control autosize area-animated msd-elastic: \n;" name="receivers" ng-model="nwAlbm1.contacts"></textarea>
+                                                <span class="error text-small block" ng-if="Form1.contacts.$dirty && Form1.contacts.$invalid">Please add few mobile numbers.</span>
+                                                <span class="success text-small" ng-if="Form1.contacts.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form1.sms_content.$dirty && Form1.sms_content.$invalid,'has-success':Form1.sms_content.$valid}">
+                                                <label class="control-label">SMS Content <span class="symbol required"></span></label>
+                                                <span class="pull-right text-extra-small text-dark text-right" ng-bind-html="smsCounterText"></span>
+                                                <textarea required class="form-control autosize area-animated msd-elastic: \n;" name="sms_content" ng-model="nwAlbm1.sms_content"></textarea>
+                                                <span class="error text-small block" ng-if="Form1.sms_content.$dirty && Form1.sms_content.$invalid">Enter sms content.</span>
+                                                <span class="success text-small" ng-if="Form1.sms_content.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form1.maxviews.$dirty && Form1.maxviews.$invalid, 'has-success':Form1.maxviews.$valid}">
+                                                <label class="control-label"> Number of max views <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control" name="maxviews" ng-model="nwAlbm1.maxviews" required />
+                                                <span class="error text-small block" ng-if="Form1.maxviews.$dirty && Form1.maxviews.$invalid">Number of maximum views is required</span>
+                                                <span class="success text-small" ng-if="Form1.maxviews.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form1.expire.$dirty && Form1.expire.$invalid, 'has-success':Form1.expire.$valid}">
+                                                <label class="control-label"> Link Expire  <span class="symbol required"></span> </label>
+                                                <div class="input-group">
+                                                    <input type="text" class="dtime form-control" name="expire" ng-model="nwAlbm1.expire" required />
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                                <span class="error text-small block" ng-if="Form1.expire.$dirty && Form1.expire.$invalid">DateTime is required</span>
+                                                <span class="success text-small" ng-if="Form1.expire.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </uib-tab>
+                                </uib-tabset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: IMAGES AND THUMBNAILS -->
+<style>
+    .bgImg{
+        height: 200px;
+        background-color: #cccccc;
+        background-size: auto 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .nav-tabs > li {
+        width: 50%;
+    }
+
+</style>

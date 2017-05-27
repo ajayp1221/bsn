@@ -1,0 +1,90 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <div>
+
+        <label for="datarangeSel">Select Date Range to filter: </label>
+        <input type="text" class="drange" id="datarangeSel" />
+    </div>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: STYLISH TABLE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <script type="text/ng-template" id="AnalyticsCtrlSelectCMP.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Select Campaigns..</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="searchCmp" name="searchCmp" id="searchCmp" placeholder="Search campaigns here...">
+                </div>
+                <div class="list-group">
+                    <div ng-repeat="(index,c) in list  | filter:searchCmp | orderBy: orderList" class="list-group-item">
+                        <div class="checkbox clip-check check-success checkbox-inline">
+                            <input type="checkbox" id="{{c.id}}cx{{index}}" ng-model="selectedOpt[c.id]" value="{{c.id}}" />
+                            <label for="{{c.id}}cx{{index}}">{{c.compaign_name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">OK</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+            </div>
+            </script>
+
+            <div class="col-lg-9">
+                <div class="panel panel-white">
+                    <uib-tabset class="tabbable">
+                        <uib-tab heading="Campaign conversion" class="padding-top-5 padding-left-5">
+                            <canvas id="conversionRate" class="chart-base" chart-type="ch1.type" chart-legend="true" chart-data="ch1.data" chart-series="ch1.series" chart-labels="ch1.labels" chart-options="ch1.options" >
+                            </canvas>
+                            <button class="btn btn-default" ng-click="ch1.toggle()">Change Chart Type</button>
+                        </uib-tab>
+                        <uib-tab active="true" heading="Age-wise reach" class="padding-top-5 padding-left-5">
+                            <canvas id="ageWise" class="chart-base" chart-type="ch2.type" chart-legend="true" chart-data="ch2.data" chart-series="ch2.series" chart-labels="ch2.labels" chart-options="ch2.options">
+                            </canvas>
+                            <button class="btn btn-default" ng-click="ch2.toggle()">Change Chart Type</button>
+                        </uib-tab>
+                        <uib-tab heading="Gender-wise reach" class="padding-top-5 padding-left-5">
+                            <canvas id="genderWise" class="chart-base" chart-type="ch3.type" chart-legend="true" chart-data="ch3.data" chart-series="ch3.series" chart-labels="ch3.labels" chart-options="ch3.options">
+                            </canvas>
+                            <button class="btn btn-default" ng-click="ch3.toggle()">Change Chart Type</button>
+                        </uib-tab>
+                        <uib-tab heading="Response time" class="padding-top-5 padding-left-5">
+                            <canvas id="genderWise" class="chart-base" chart-type="ch4.type" chart-legend="true" chart-data="ch4.data" chart-series="ch4.series" chart-labels="ch4.labels" chart-options="ch4.options">
+                            </canvas>
+                            <button class="btn btn-default" ng-click="ch4.toggle()">Change Chart Type</button>
+                        </uib-tab>
+
+
+                    </uib-tabset>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="panel panel-white">
+                    
+                    <div class="padding-5 center">
+                        <button class="btn btn-success" ng-click="selectCmpns()">Select Campaigns</button>
+                    </div>
+                    <hr />
+                    <div class="panel-heading">
+                        <h4>Selected Campaigns</h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tr ng-repeat="c in selectedCmpns()">
+                                <td>{{c.compaign_name}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<pre class="prettyprint">{{chartData| json:spacing}}</pre>-->
+    </div>
+</div>

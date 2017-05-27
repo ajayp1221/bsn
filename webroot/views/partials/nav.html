@@ -1,0 +1,371 @@
+<!-- start: MAIN NAVIGATION MENU -->
+<div class="navbar-title">
+    <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
+</div>
+<ul class="main-navigation-menu">
+    <li ui-sref-active="active">
+        <a ui-sref="app.dashboard">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="A" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Admin </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    
+    <li ui-sref-active="active">
+        <a ui-sref="app.customers.list">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="CL" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Customer List </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    
+    <li ng-class="{'active open':$state.includes('campaigns.smsregular') || $state.includes('campaigns.lastvisit') || $state.includes('campaigns.sms') || $state.includes('campaigns.email') || $state.includes('campaigns.emailregular') || $state.includes('socialshare.create') || $state.includes('socialshare.all') || $state.includes('app.albums.upload') || $state.includes('app.albums.add') || $state.includes('app.albums.send')} ">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="MA" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" > Marketing </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active open':$state.includes('campaigns.smsregular') || $state.includes('campaigns.sms') || $state.includes('campaigns.refered') || $state.includes('campaigns.lastvisit')}">
+                <a href="javascript:;"> <span>SMS Campaigns</span> <i class="icon-arrow"></i> </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="campaigns.smsregular"> 
+                            <span>Regular</span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a  ui-sref="campaigns.sms"> 
+                            <span>B'day & Anniversaries</span>
+                        </a>
+                    </li>
+<!--                    <li ui-sref-active="active">
+                        <a ui-sref="campaigns.refered">
+                            <span>Recommend Friends (Tablet)</span>
+                        </a>
+                    </li>-->
+                    <li ui-sref-active="active">
+                        <a ui-sref="campaigns.lastvisit">
+                            <span>Auto Reminder</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-class="{'active open':$state.includes('campaigns.email') || $state.includes('campaigns.emailregular')}">
+                <a href="javascript:;"> <span>E-Mail Campaigns</span> <i class="icon-arrow"></i> </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="campaigns.emailregular"> 
+                            <span>Regular</span> 
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="campaigns.email"> 
+                            <span>B'day & Anniversaries</span> 
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li  ng-class="{'active open':$state.includes('socialshare.create') || $state.includes('socialshare.all')}">
+                <a href="javascript:;"> <span>Social Media <br>Marketing</span> <i class="icon-arrow"></i> </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a ui-sref="socialshare.create"> 
+                            <span>Create Post</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="socialshare.all"> 
+                            <span>Scheduled Posts</span> 
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li  ng-class="{'active open':$state.includes('app.albums.upload') || $state.includes('app.albums.send')|| $state.includes('app.albums.add')}">
+                <a href="javascript:;"> <span>Photo Sharing</span> <i class="icon-arrow"></i> </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a ui-sref="app.albums.add"> 
+                            <span>Add New Album</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.albums.upload"> 
+                            <span>Your Photos</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.albums.send"> 
+                            <span>Send Photos</span> 
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    
+    <li ng-if="selectedStore.is_customer_feedback ==1" ng-class="{'active open':$state.includes('cstfback.tabscreens.welcome')||$state.includes('cstfback.tabscreens.questions')||$state.includes('cstfback.tabscreens.recommend')||$state.includes('cstfback.tabscreens.socialshr')||$state.includes('cstfback.tabscreens.products')||$state.includes('feedback.publish')|| $state.includes('campaigns.recommend')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="Customer Feedback" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" > Customer Feedback </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active open':$state.includes('cstfback.tabscreens.welcome')||$state.includes('cstfback.tabscreens.questions')||$state.includes('cstfback.tabscreens.recommend')||$state.includes('cstfback.tabscreens.socialshr')||$state.includes('cstfback.tabscreens.products')}">
+                <a href="javascript:;"> <span>Edit Tab Screen</span> <i class="icon-arrow"></i> </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="cstfback.tabscreens.welcome"> 
+                            <span>Welcome Screen</span> 
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="cstfback.tabscreens.questions"> 
+                            <span>Feedback Questions</span> 
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="cstfback.tabscreens.recommend"> 
+                            <span>Recommend Friends</span> 
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="cstfback.tabscreens.socialshr"> 
+                            <span>Social Share</span> 
+                        </a>
+                    </li>
+<!--                    <li ui-sref-active="active">
+                        <a ui-sref="cstfback.tabscreens.products"> 
+                            <span>Manage Products</span> 
+                        </a>
+                    </li>-->
+                    <li ui-sref-active="active">
+                        <a ui-sref="campaigns.refered">
+                            <span>Recommend Friends (Tablet)</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="feedback.publish"> 
+                    <span>Publish Reviews</span> 
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;"> <span>Analytics</span> <i class="icon-arrow"></i> </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a ui-sref="cstfback.analytics.nps"> 
+                            <span>Net Promoter <br>Score(NPS)</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="cstfback.analytics.customersrepeat"> 
+                            <span>Repeat Customer <br>Analysis</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="cstfback.analytics.feedbackquestions"> 
+                            <span>Customer Feedback <br>Analysis</span> 
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="loyalty.index">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="LO" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Loyalty </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ui-sref-active="active" ng-if="selectedStore.is_anatytics ==1">
+        <a ui-sref="campaigns.analytics">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="AN" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Analytics </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li  ng-if="selectedStore.is_appdata ==1" ng-class="{'active open':$state.includes('appData')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="App Data" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" > App Data </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active open':$state.includes('appData.store')}">
+                <a ui-sref="appData.store"> 
+                    <span>Store Details</span> 
+                </a>
+            </li>
+            <li ng-class="{'active open':$state.includes('appData.image')}">
+                <a ui-sref="appData.image"> 
+                    <span>Image</span> 
+                </a>
+            </li>
+            <li ng-class="{'active open':$state.includes('appData.banner')}">
+                <a ui-sref="appData.banner"> 
+                    <span>Banners</span> 
+                </a>
+            </li>
+            <li ng-class="{'active open':$state.includes('appData.pushmessages')}">
+                <a ui-sref="appData.pushmessages">
+                    <span>Push-Notification</span> 
+                </a>
+            </li>
+        </ul>
+    </li>
+    
+    
+    <li ng-class="{'active open':$state.includes('settings')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="Store Settings" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" > Settings </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active open':$state.includes('settings.store')}">
+                <a ui-sref="settings.store"> 
+                    <span>Daily Report</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    
+    <li ng-class="{'active open':$state.includes('smslogs')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="SmsLogs" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" > SmsLogs </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active open':$state.includes('smslogs.credits')}">
+                <a ui-sref="smslogs.credits"> 
+                    <span>Credits</span> 
+                </a>
+            </li>
+            <li ng-class="{'active open':$state.includes('smslogs.debits')}">
+                <a ui-sref="smslogs.debits"> 
+                    <span>Debits</span> 
+                </a>
+            </li>
+            <li ng-class="{'active open':$state.includes('smslogs.list')}">
+                <a ui-sref="smslogs.list"> 
+                    <span>List</span> 
+                </a>
+            </li>
+        </ul>
+    </li>
+    
+    <li  ng-if="selectedStore.is_mall ==1" ng-class="{'active open':$state.includes('app.mall')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="Mall" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Mall </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active open':$state.includes('app.mall.shop')}">
+                <a ui-sref="app.mall.shop"> 
+                    <span>Shop</span>
+                </a>
+            </li>
+            <li ng-class="{'active open':$state.includes('app.mall.vouchercounter')}">
+                <a ui-sref="app.mall.vouchercounter"> 
+                    <span>Voucher Counter</span>
+                </a>
+            </li>
+            <li ng-class="{'active open':$state.includes('app.mall.verificationcounters')}">
+                <a ui-sref="app.mall.verificationcounters"> 
+                    <span>Verification Counters</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    
+</ul>
+<!-- end: MAIN NAVIGATION MENU -->
+
+<!-- start: FEATURES -->
+<!--<div class="navbar-title">
+    <span translate="sidebar.heading.FEATURES">Core Features</span>
+</div>
+<ul class="folders">
+    <li>
+        <a ui-sref="landing.welcome">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'sidebar.nav.landing.MAIN' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="sidebar.nav.landing.MAIN"> Landing Page </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="http://www.cliptheme.com/demo/packet/LAYOUT-RTL-1/" target="_blank">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'sidebar.nav.rtl.MAIN' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="sidebar.nav.rtl.MAIN"> RTL Version </span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>-->
+<!-- end: FEATURES -->

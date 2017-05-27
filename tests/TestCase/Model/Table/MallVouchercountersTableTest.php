@@ -1,0 +1,112 @@
+<?php
+namespace App\Test\TestCase\Model\Table;
+
+use App\Model\Table\MallVouchercountersTable;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
+
+/**
+ * App\Model\Table\MallVouchercountersTable Test Case
+ */
+class MallVouchercountersTableTest extends TestCase
+{
+
+    /**
+     * Test subject
+     *
+     * @var \App\Model\Table\MallVouchercountersTable
+     */
+    public $MallVouchercounters;
+
+    /**
+     * Fixtures
+     *
+     * @var array
+     */
+    public $fixtures = [
+        'app.mall_vouchercounters',
+        'app.stores',
+        'app.brands',
+        'app.clients',
+        'app.devices',
+        'app.sharedcodes',
+        'app.customers',
+        'app.answers',
+        'app.questions',
+        'app.options',
+        'app.customer_visits',
+        'app.smsledger',
+        'app.messages',
+        'app.campaigns',
+        'app.purchases',
+        'app.products',
+        'app.productcats',
+        'app.sharedcode_redeemed',
+        'app.welcomemsgs',
+        'app.customermeasurements',
+        'app.social_connections',
+        'app.socialshares',
+        'app.smsplans',
+        'app.clients_smsplans',
+        'app.albums',
+        'app.albumimages',
+        'app.pushmessages',
+        'app.recommend_screen',
+        'app.share_screen',
+        'app.templatemessages'
+    ];
+
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $config = TableRegistry::exists('MallVouchercounters') ? [] : ['className' => 'App\Model\Table\MallVouchercountersTable'];
+        $this->MallVouchercounters = TableRegistry::get('MallVouchercounters', $config);
+    }
+
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unset($this->MallVouchercounters);
+
+        parent::tearDown();
+    }
+
+    /**
+     * Test initialize method
+     *
+     * @return void
+     */
+    public function testInitialize()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test validationDefault method
+     *
+     * @return void
+     */
+    public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+}

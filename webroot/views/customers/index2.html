@@ -1,0 +1,69 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="sidebar.nav.tables.DATA">Customers</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: INLINE EDIT EXAMPLE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12 load1" ng-class="{csspinner:isLoading}">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="form-field-mask-1">
+                            Search with Name, Email or Mobile No. :
+                        </label>
+                        <div class="input-group">
+                            <input type="text" ng-model="srchkey" class="form-control ng-valid ng-valid-mask ng-empty ng-touched ng-dirty ng-valid-parse" name="srchkey" placeholder="Enter keywords here"  ng-model="x" style="">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" style="padding: 6.5px 12px;" ng-click="searchNowBtn()">
+                                    <i class="fa fa-search"></i>
+                                    Search!
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table ng-table="tableParams" class="table">
+                            <tr>
+                                <th class="hidden-xs">Name</th>
+                                <th>Contact No</th>
+                                <th class="hidden-xs">Email</th>
+                                <th class="hidden-xs">DOB</th>
+                                <th class="hidden-xs">DOA</th>
+                                <th>Action</th>
+                            </tr>
+                            <tbody ng-repeat="p in customers">
+                                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                                    <td class="hidden-xs rowTd" data-title="'Firstname'"  ng-click="$parent.sortBy('name')">{{p.name}}</td>
+                                    <td class="rowTd" data-title="'Contact Number'"  ng-click="$parent.sortBy('contact_no')">{{p.contact_no}}</td>
+                                    <td class="hidden-xs rowTd" data-title="'Email'" ng-click="$parent.sortBy('email')">{{p.email}}</td>
+                                    <td class="hidden-xs rowTd" data-title="'dob'" ng-click="$parent.sortBy('dob')">{{p.dob}}</td>
+                                    <td class="hidden-xs rowTd" data-title="'doa'" ng-click="$parent.sortBy('doa')">{{p.doa}}</td>
+                                    <td class="rowTd center">
+                                        <div class="pull-right margin-right-10">
+                                            <button uib-tooltip="Edit Customer" tooltip-placement="left" type="button" id="editRowBtn{{p.id}}"
+                                                    class="btn btn-primary btn-scroll btn-scroll-top ti-pencil fa fa-pencil" ng-click="setEditId(p.id)">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-show="editId === p.id" ng-if="editId === p.id">
+                                    <td colspan="7" ng-include src="'/views/customers/editRow.html'"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{'active':pager.currentPg == n.vl}">
+                            <a ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: INLINE EDIT EXAMPLE -->

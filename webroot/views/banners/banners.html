@@ -1,0 +1,80 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Banner images for store app</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: IMAGES AND THUMBNAILS -->
+<div class="container-fluid container-fullw" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <script type="text/ng-template" id="uploadImg.html">
+                        <div class="modal-header">
+                            Add New Images
+                        </div>
+                        <form enctype ="multipart/form-data"  id="fileUploadFrm">
+                            <div class="modal-body">
+                                <div ng-hide="showPrg">
+                                    <span class="btn btn-primary btn-o btn-file">
+                                        Select an image file
+                                        <input type="file" name=all_images[] multiple />
+                                    </span>
+                                    <input type="hidden" name="store_id" value="{{storeSlug}}" />
+                                </div>
+                            </div>
+                            <div ng-show="showPrg">
+                                <uib-progressbar animate="true" value="progress" type="success"><b>{{prgText}}</b></uib-progressbar>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" ng-click="ok()">Save</button>
+                                <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </form>
+                    </script>
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Banner images</span></h5>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        Banner image ( {{storeCoverImages.length}} )
+                                        <a style="float:right" href="javascript:void()" class="text-bold" ng-click="addImage()">
+                                            Add new Banner images
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-3" ng-repeat="banner in storeCoverImages">
+                                            <a href="#" class="thumbnail">
+                                                <div class="bgImg" ng-style="{'background-image':'url({{banner.android_api_img}})'}"></div>
+                                            </a>
+                                            <div class="caption">
+                                                <p>
+                                                    <a href="#" class="btn btn-o btn-danger"  ng-click="bannerImageDelete(banner.id)"> Delete </a>
+                                                    <!--<a href="#" class="btn btn-o btn-primary" ng-click="albumimagesUpdate(albumimage.id)"> Update </a>-->
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: IMAGES AND THUMBNAILS -->
+<style>
+    .bgImg{
+        height: 200px;
+        background-color: #cccccc;
+        background-size: auto 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+</style>

@@ -1,0 +1,52 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Publish Reviews & Ratings to zakoopi.com</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <v-accordion class="vAccordion--default" multiple ng-repeat="(key,feedback) in feedbacks">
+                        <v-pane expanded>
+                            <v-pane-header>
+                                <b>{{key | amDateFormat:'dddd, Do MMMM YYYY, h:mm:ss a'}}</b>
+                            </v-pane-header>
+                            <v-pane-content>
+                                <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)">
+                                    <div ng-repeat="answer in feedback">
+                                        <div ng-if="answer.answer_type == '2' ">
+                                            <input type="hidden" ng-model="answer.id" />
+                                            Customer : <b>{{answer.customer.name}}</b><br>
+                                            Ratings : {{answer.answer }}
+                                            <span class="pull-right">
+                                                <div ng-if="answer.is_published">
+                                                    <button class="btn btn-primary" style="background: green; color:white; border: 0;" disabled>
+                                                        Published
+                                                    </button>
+                                                </div>
+                                                <div ng-if="!answer.is_published">
+                                                    <button class="btn btn-primary" ng-click="publish(answer)">Publish</button>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <div ng-if="answer.answer_type == '3' || '1' ">
+                                            <input type="hidden" name="ids[]" ng-model="answer.id" />
+                                            Review : {{ answer.answer }}
+                                        </div>
+                                        <hr/>
+                                    </div>
+                                </form>
+                            </v-pane-content>
+                        </v-pane>
+                    </v-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->

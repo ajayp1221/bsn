@@ -1,0 +1,302 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">SMS Campaigns</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isSendingData}">
+                <div class="panel-body">
+                    <!--<pre>{{ newCmp | json : spacing}}</pre>-->
+                    <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                        <h5 class="over-title margin-bottom-15">
+                            Add a New Campaign
+                        </h5>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="panel panel-transparent">
+                                    <div class="panel-body">
+                                        <div class="form-group" ng-class="{'has-error':Form.compaign_name.$dirty && Form.compaign_name.$invalid, 'has-success':Form.compaign_name.$valid}">
+                                            <label class="control-label"> Campaign Name <span class="symbol required"></span> </label>
+                                            <input type="text" class="form-control" name="compaign_name" ng-model="newCmp.compaign_name" required />
+                                            <span class="error text-small block" ng-if="Form.compaign_name.$dirty && Form.compaign_name.$invalid">Campaign title is required</span>
+                                            <span class="success text-small" ng-if="Form.compaign_name.$valid">Thank You!</span>
+                                        </div>
+                                        <div class="form-group" ng-class="{'has-error':Form.message.$dirty && Form.message.$invalid, 'has-success':Form.message.$valid}">
+                                            <label class="control-label">
+                                                Message <span class="symbol required"></span>
+                                            </label>
+                                            <span class="pull-right text-extra-small text-dark text-right" ng-bind-html="smsCounterText"></span>
+                                            <textarea class="form-control ng-pristine ng-untouched ng-valid autosize area-animated msd-elastic: \n;" name="message" required ng-model="newCmp.message" tooltip-enable="!inputModel" tooltip-trigger="mouseenter" tooltip-placement="top" uib-tooltip="Use shortcodes {{ '{' +'{cstName}' + '}' }}, where you wish to insert the Customer Name" ></textarea>
+                                            <span class="error text-small block" ng-if="Form.message.$dirty && Form.message.$invalid">Message is required</span>
+                                            <span class="success text-small" ng-if="Form.message.$valid">Thank You!</span>
+                                        </div>
+                                        <div class="checkbox clip-check check-success checkbox-inline">
+                                            <input type="checkbox" ng-model="newCmp.embedcode"  id="checkbox11" value="1" checked="">
+                                            <label for="checkbox11">
+                                                Add coupon code
+                                            </label>
+                                        </div>
+                                        <a href="" popover-placement="right"  uib-popover="Check this box to include unique code is every sms to measure the effectiveness of campaign" popover-placement="top" popover-title=""><i class="fa fa-question-circle text-dark-transparent margin-left-5"></i></a>
+                                        <div class="form-group" ng-class="{'has-error':Form.send_date.$dirty && Form.send_date.$invalid, 'has-success':Form.send_date.$valid}">
+                                            <label class="control-label"> Campaign Schedule <span class="symbol required"></span> </label>
+                                            <div class="input-group">
+                                                <input type="text" placeholder="Select day and time" class="dtime form-control" name="send_date" ng-model="newCmp.send_date" required />
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                            <span class="error text-small block" ng-if="Form.send_date.$dirty && Form.send_date.$invalid">DateTime is required</span>
+                                            <span class="success text-small" ng-if="Form.send_date.$valid">Thank You!</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">
+                                                Submit
+                                            </button>
+                                            <button type="submit" class="btn btn-o btn-primary">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="panel panel-transparent">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <h5 class="over-title margin-bottom-15">Send To (Select One)</h5>
+                                        </div>
+                                        <div class="radio clip-radio radio-primary">
+                                            <input type="radio" ng-model="newCmp.whos_send" id="whos_send0" name="whos_send" value="0">
+                                            <label for="whos_send0">
+                                                <span class="text-bold">Everyone in existing database </span>({{newCmp.allCst}} SMS Credits)
+                                            </label>
+                                        </div>
+                                        <div class="radio clip-radio radio-primary">
+                                            <input type="radio" ng-model="newCmp.whos_send" id="whos_send1" name="whos_send" value="1">
+                                            <label for="whos_send1">
+                                                <span class="text-bold">People who redeemed a coupon earlier</span>({{newCmp.redeemedCst}} SMS Credits)
+                                            </label>
+                                        </div>
+                                        <div class="radio clip-radio radio-primary">
+                                            <input type="radio" ng-model="newCmp.whos_send" id="whos_send2" name="whos_send" value="2">
+                                            <label for="whos_send2">
+                                                <span class="text-bold">Add mobile number/s manually</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group" ng-if="newCmp.whos_send == 2" ng-class="{'has-error':Form.receivers.$dirty && Form.receivers.$invalid, 'has-success':Form.receivers.$valid}">
+                                            <label>
+                                                Add one or multiple numbers. Separate multiple numbers with a comma (,) <span class="symbol required"></span>
+                                            </label>
+                                            <textarea required class="form-control autosize area-animated msd-elastic: \n;" name="receivers" ng-model="newCmp.receivers"></textarea>
+                                            <span class="error text-small block" ng-if="Form.receivers.$dirty && Form.receivers.$invalid">Please add few mobile numbers.</span>
+                                            <span class="success text-small" ng-if="Form.receivers.$valid">Thank You!</span>
+                                        </div>
+                                        <div class="radio clip-radio radio-primary" ng-if="selectedStore.is_customer_feedback ==1">
+                                            <input type="radio" ng-model="newCmp.whos_send" id="whos_send3" name="whos_send" value="3">
+                                            <label for="whos_send3">
+                                                <span class="text-bold">Choose via Question - Answers</span>({{newCmp.answeredCst}} SMS Credit)
+                                            </label>
+                                            <script type="text/ng-template" id="AsideQue.html">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title">Select any question..</h3>
+                                            </div>
+                                            <div class="modal-body load1" ng-class="{csspinner:isQuestionData}">
+                                                <div class="list-group">
+                                                    <div ng-repeat="q in ques" class="list-group-item">
+                                                        <h6 ng-click="$parent.openQue(q.id)">{{q.question}}</h6>
+                                                        <div ng-if="q.id == $parent.selectedQID">
+                                                            <div ng-if="q.question_type == 1" >
+                                                                <div ng-repeat="(index,doc) in q.options" class="checkbox clip-check check-success checkbox-inline">
+                                                                    <input type="checkbox" id="{{doc.id}}cx{{index}}" ng-model="selectedOpt[doc.option]" value="{{doc.option}}" />
+                                                                    <label for="{{doc.id}}cx{{index}}">{{doc.option}}</label>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-if="q.question_type == 2">
+                                                                <div ng-if="q.options[0].option == 2">
+                                                                    <span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbA1" type="checkbox" ng-model="selectedOpt['1/5']" />
+                                                                        <label for="cbA1">1</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbA2" type="checkbox" ng-model="selectedOpt['2/5']" />
+                                                                        <label for="cbA2">2</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbA3" type="checkbox" ng-model="selectedOpt['3/5']" />
+                                                                        <label for="cbA3">3</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbA4" type="checkbox" ng-model="selectedOpt['4/5']" />
+                                                                        <label for="cbA4">4</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbA5" type="checkbox" ng-model="selectedOpt['5/5']" />
+                                                                        <label for="cbA5">5</label>
+                                                                    </span>
+                                                                </div>
+                                                                <div ng-if="q.options[0].option == 3" >
+                                                                    <span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB1" type="checkbox" ng-model="selectedOpt['1/10']" />
+                                                                        <label for="cbB1">1</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB2" type="checkbox" ng-model="selectedOpt['2/10']" />
+                                                                        <label for="cbB2">2</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB3" type="checkbox" ng-model="selectedOpt['3/10']" />
+                                                                        <label for="cbB3">3</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB4" type="checkbox" ng-model="selectedOpt['4/10']" />
+                                                                        <label for="cbB4">4</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB5" type="checkbox" ng-model="selectedOpt['5/10']" />
+                                                                        <label for="cbB5">5</label>
+                                                                    </span>
+                                                                    <span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB6" type="checkbox" ng-model="selectedOpt['6/10']" />
+                                                                        <label for="cbB6">6</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB7" type="checkbox" ng-model="selectedOpt['7/10']" />
+                                                                        <label for="cbB7">7</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB8" type="checkbox" ng-model="selectedOpt['8/10']" />
+                                                                        <label for="cbB8">8</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB9" type="checkbox" ng-model="selectedOpt['9/10']" />
+                                                                        <label for="cbB9">9</label>
+                                                                    </span><span  class="checkbox clip-check check-success checkbox-inline">
+                                                                        <input id="cbB10" type="checkbox" ng-model="selectedOpt['10/10']" />
+                                                                        <label for="cbB10">10</label>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" ng-click="ok()">OK</button>
+                                                <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+                                            </div>
+                                            </script>
+                                        </div>
+                                        <div class="radio clip-radio radio-primary">
+                                            <input type="radio" ng-model="newCmp.whos_send" id="whos_send4" name="whos_send" value="4">
+                                            <label for="whos_send4">
+                                                <span class="text-bold">Select by tags</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-group" ng-if="newCmp.whos_send == 4" ng-class="{'has-error':Form.tags.$dirty && Form.tags.$invalid, 'has-success':Form.tags.$valid}">
+                                            <label>
+                                                <span class="symbol required"></span>
+                                            </label>
+                                            <select ng-model="newCmp.tags" ng-options="tag.tags as tag.tags for tag in tags">
+                                                <option value="">Select</option>
+                                            </select>
+                                            <span class="error text-small block" ng-if="Form.tags.$dirty && Form.tags.$invalid">Please select tags one of them</span>
+                                            <span class="success text-small" ng-if="Form.tags.$valid">Thank You!</span>
+                                        </div>
+                                        <div class="radio clip-radio radio-primary">
+                                            <input type="radio" ng-model="newCmp.whos_send" id="whos_send5" name="whos_send" value="5">
+                                            <label for="whos_send5">
+                                                <span class="text-bold">Select by source</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-group" ng-if="newCmp.whos_send == 5" ng-class="{'has-error':Form.sources.$dirty && Form.sources.$invalid, 'has-success':Form.sources.$valid}">
+                                            <label>
+                                                <span class="symbol required"></span>
+                                            </label>
+                                            <select ng-model="newCmp.sources" ng-options="source.added_by as source.added_by for source in sources">
+                                                <option value="">Select</option>
+                                            </select>
+                                            <span class="error text-small block" ng-if="Form.sources.$dirty && Form.sources.$invalid">Please select tags one of them</span>
+                                            <span class="success text-small" ng-if="Form.sources.$valid">Thank You!</span>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div class="checkbox clip-check check-success checkbox-inline">
+                                                <input type="checkbox" ng-model="newCmp.exceptDefaulter" id="checkbox12" value="1" checked="">
+                                                <label for="checkbox12">
+                                                    Except customers who did not receive your last SMS
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: ICONS AND HELPERS -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15">Campaigns <span class="text-bold">Table</span></h5>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th class="center no-border">ID</th>
+                                <th class="no-border">Campaign Name</th>
+                                <th class="hidden-xs no-border">Credits used</th>
+                                <th class="hidden-xs no-border">Messages Sent</th>
+                                <th class="no-border">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="campaign in campaigns">
+                                <td class="center" scope="row">{{campaign.id}}</td>
+                                <td>
+                                    <span  uib-tooltip="{{campaign.message}}">
+                                        <a href="#/app/allmessages/{{campaign.id}}">
+                                            {{campaign.compaign_name}}&nbsp;
+                                        </a>
+                                    </span>
+                                    <span ng-show="campaign.status == 1">
+                                        <i class="ti-pencil right-align" ng-click="openEditMdl(campaign.id,campaign.message)"></i>
+                                    </span>
+                                </td>
+                                <td class="hidden-xs">{{campaign.creditused}}</td>
+                                <td class="hidden-xs">{{campaign.message_sent}}</td>
+                                <td>
+                                    <select ng-model="campaign.status" ng-options="option.id as option.name for option in options" ng-change="changeStatus(campaign.status, campaign.id)">
+                                        <option value="">Select</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="editMsgMdl.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Update Campaign Message</h3>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message_one" id="message_one" class="form-control" ng-keyup="updateMessage($event)">{{message}}</textarea>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+<!-- end: YOUR CONTENT HERE -->

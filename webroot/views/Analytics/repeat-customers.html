@@ -1,0 +1,90 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Repeat Customer Analysis </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+
+<div class="container-fluid container-fullw padding-top-0">
+
+    <div class="row margin-5">
+        <div class="col-lg-6">
+            <input type="text" id="datarangeSel" name="range" />
+        </div>
+        <div class="col-lg-6">
+            <!--<a href="/customers/exportToExcel" target="_new" class="btn btn-success pull-right"><i class="ti-download"></i> Download</a>-->
+        </div>
+    </div>
+
+    <div class="col-lg-12 load1" ng-class="{csspinner:isLoading}">
+        <div class="col-lg-9">
+            <div class="panel panel-white no-radius no-border">
+                <div class="panel-body no-padding">
+                    <canvas id="genderWise" class="chart-base" chart-type="ch1.type" chart-legend="true" chart-data="ch1.data" chart-series="ch1.series" chart-labels="ch1.labels" chart-options="ch1.options">
+                    </canvas>
+                    <button class="btn btn-default" ng-click="ch1.toggle()">Change Chart Type</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-blue no-radius no-border">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Customers breakup</h3>
+                </div>
+                <div class="panel-body text-white-transparent">
+                    <h2 class="text-white-transparent">{{finalCount.countRepeat}} </h2>
+<!--                    <span class="label background-light text-dark margin-top-10 margin-right-5">{{finalCount.totalRepeat.toFixed(2)}}%</span>-->
+                    Repeat Customers
+                    <hr />
+                    <h2 class="text-white-transparent">{{finalCount.countFirst}}</h2>
+                    <!--<span class="label background-light text-dark margin-top-10 margin-right-5">{{finalCount.totalFirst.toFixed(2)}}%</span>-->
+                    New Customers
+                    <hr />
+                    <h2 class="text-white-transparent">{{finalCount.countFirst + finalCount.countRepeat}}</h2>
+                    Total Customers
+                    
+                    <hr />
+                    <div class="block text-center">
+                        <div class="inline-block">
+                             <ui-knob value="knobs.val1" options="knobs.options"></ui-knob><span class="text-white block">Repeat<br>Customers</span>
+                        </div>
+                        <div class="inline-block">
+                             <ui-knob value="knobs.val2" options="knobs.options"></ui-knob><span class="text-white block">New<br>Customers</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="panel panel-info no-radius no-border">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Regular Customers breakup</h3>
+                    <a href="/customer-visits/export-top-customers" class="pull-right btn btn-success btn-wide btn-scroll btn-scroll-left ti-download">
+                        <span>Export Data</span>
+                    </a>
+                       
+                       
+                </div>
+                <div class="panel-body text-white-transparent">
+                    <table ng-table="vm.tableParams" class="table" show-filter="true">
+                        <tr>
+                            <th>Customer</th>
+                            <th>Contact No.</th>
+                            <th>Visits Till Now</th>
+                        </tr>
+                        <tr ng-repeat="customer in topCustomers">
+                            <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                                {{customer.name}}</td>
+                            <td title="'Age'" filter="{ contact_no: 'number'}" sortable="'contact_no'">
+                                {{customer.contact_no}}</td>
+                            <td title="'Age'" filter="{ visit_count 'number'}" sortable="'visit_count'">
+                                {{customer.visit_count}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

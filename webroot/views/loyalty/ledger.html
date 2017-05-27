@@ -1,0 +1,72 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Loyalty Ledger for {{number}}</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: IMAGES AND THUMBNAILS -->
+<div class="container-fluid container-fullw" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Loyalty Customer Ledger</span></h5>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th class="center no-border">Date</th>
+                                <th class="no-border">Description</th>
+                                <th class="hidden-xs no-border">Credit</th>
+                                <th class="no-border">Debit</th>
+                                <th class="hidden-xs no-border">Balance</th>
+                                <th class="hidden-xs no-border">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="d in data">
+                                <td class="center">
+                                    {{d.dated * 1000| amDateFormat:'DD-MM-YYYY hh:mm A'}}
+                                </td>
+                                <td>
+                                    <p>{{d.comments}}</p>
+                                    <ul ng-repeat="doc in d.adjustment.split(';') track by $index"> 
+                                        <li ng-if="doc">{{doc}}</li>
+                                    </ul>
+                                </td>
+                                <td class="hidden-xs">
+                                    <div ng-if="d.points_credit == 0">
+                                        {{d.points_credit}}
+                                    </div>
+                                    <div ng-if="d.points_credit != 0">
+                                        <span data-ng-hide="editMode">{{d.points_credit}}</span>
+                                        <input type="text" data-ng-show="editMode" data-ng-model="d.points_credit" data-ng-required />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div ng-if="d.points_debit == 0">
+                                        {{d.points_debit}}
+                                    </div>
+                                    <div ng-if="d.points_debit != 0">
+                                        <span data-ng-hide="editMode">{{d.points_debit}}</span>
+                                        <input type="text" data-ng-show="editMode" data-ng-model="d.points_debit" data-ng-required />
+                                    </div>
+                                </td>
+                                <td class="hidden-xs">{{d.points_balance}}</td>
+                                <td class="hidden-xs">
+                                    <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true; editAppKey(d)" class="btn btn-azure">Edit</button>
+                                    <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; save(d)" class="btn btn-success">Save</button><br/><br/>
+                                    <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; cancel()" class="btn btn-danger">Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)">{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

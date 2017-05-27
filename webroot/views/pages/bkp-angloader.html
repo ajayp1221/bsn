@@ -1,0 +1,202 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="sidebar.nav.pages.BLANKPAGE">Dashboard</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw padding-bottom-10">
+    <div class="row">
+        <div class="col-sm-12">
+<!--            <div class="row">
+                <div class="col-md-4 col-lg-12">
+                    <div class="panel panel-white no-radius no-border">
+                        <ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>
+                        <div class="panel-body no-padding">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="padding-15">
+                                        <h5 class="text-dark">Repeat Customers Conversions</h5>
+                                        <p>
+                                            <i class="fa fa-circle text-azure margin-right-5"></i><span class="text-bold text-extra-small">Ecommerce Conversion Rate</span>
+                                        </p>
+                                        <p>
+                                            <span class="text-small"> 1,20%</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                     /// controller:  'ConversionsCtrl' -  localtion: assets/js/controllers/dashboardCtrl.js /// 
+                                    <div ng-controller="ConversionsCtrl" class="margin-negative-5">
+                                        <canvas class="chart chart-line height-75" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-white">
+                        <div class="panel-body">
+                            <strong>SMS Debits Ledger</strong>
+                            <table class="table table-responsive">
+                                <tbody>
+                                    <tr ng-repeat="l in smsLedgerData" ng-if="l[2] != '0'">
+                                        <td>
+                                            <a ui-sref="smslogs.debits({flag:l[0]})">{{l[0]}}</a>
+                                        </td>
+                                        <td align="right" ng-if="l[1] != '0'"><span class="label label-sm label-success">Cr. <b>{{l[1]}}</b></span></td>
+                                        <td align="right" ng-if="l[2] != '0'"><span class="label label-sm label-warning">Dr. <b>{{l[2]}}</b></span></td>
+                                    </tr>
+                                    <tr class="background-dark">
+                                        <td>Total Dr. </td>
+                                        <td align="right"><span class="label label-sm label-warning">Dr. <b>{{smsLedgerTotals.drSum}}</b></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                
+                
+                <div class="col-lg-6">
+                    <div class="panel panel-white">
+                        <div class="panel-body">
+                            <strong>SMS Credits Ledger</strong>
+                            <table class="table table-responsive">
+                                <tbody>
+                                    <tr ng-repeat="l in smsLedgerData" ng-if="l[1] != '0'">
+                                        <td>{{l[0]}}</td>
+                                        <td align="right" ng-if="l[1] != '0'"><span class="label label-sm label-success">Cr. <b>{{l[1]}}</b></span></td>
+                                        <td align="right" ng-if="l[2] != '0'"><span class="label label-sm label-warning">Dr. <b>{{l[2]}}</b></span></td>
+                                    </tr>
+                                    <tr class="background-dark">
+                                        <td>Total Cr. </td>
+                                        <td align="right"><span class="label label-sm label-success">Dr. <b>{{smsLedgerTotals.crSum}}</b></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="col-lg-12 padding-10">
+                    <div class="center links cl-effect-1">
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+                
+            </div>
+
+
+
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+
+                    <uib-tabset class="tabbable">
+                        <uib-tab heading="SMS Campaigns" select="loadSMS()">
+                            <table class="table table-stylish" id="sample-table-3">
+                                <thead>
+                                    <tr>
+                                        <th ng-click="sortSmsBy('compaign_name')"><a>SMS Campaigns</th>
+                                        <th>SMSs Queued</th>
+                                        <th><a><i class="fa fa-time"></i> SMSs Sent </a></th>
+                                        <th class="hidden-xs"><a>Credits Used</a></th>
+                                        <th class="hidden-xs">Conversions</th>
+                                        <th ng-click="sortSmsBy('status')" class="hidden-xs"><a>Status</a></th>
+                                        <th ng-click="sortSmsBy('created')" class="hidden-xs"><a>Created</a></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="d in smsData">
+                                    <tr>
+                                        <td><a ui-sref="app.allmessages({cmpid: d.id})" uib-tooltip="{{d.message}}"> {{d.compaign_name}} </a></td>
+                                        <td class="hidden-xs text-center">{{d.total_queued}}</td>
+                                        <td class="hidden-xs text-center">{{d.total_msg}}</td>
+                                        <td class="text-center">{{d.total_cost}}</td>
+                                        <!--<td class="text-center">{{isNanBlank(d.totalmsg * d.cost_multiplier)}}</td>-->
+                                        <td class="hidden-xs text-center">
+                                            {{d.totalredeemed}}
+                                        </td>
+                                        <td ng-class="{'bg-light-orange':d.status == 2, 'bg-light-green':d.status == 0, 'bg-success':d.status == 1,}">
+                                            <div class="text-white text-center">
+                                                {{d.status == 1 ? 'Running':''}}
+                                                {{d.status == 0 ? 'Completed':''}}
+                                                {{d.status == 2 ? 'Paused':''}}
+                                            </div>
+                                        </td>
+                                        <td class="hidden-xs ">{{d.created * 1000| amDateFormat:'DD-MM-YYYY hh:mm a'}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <ul class="pagination ng-table-pagination">
+                                <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                                    <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                                </li>
+                            </ul>
+                        </uib-tab>
+                        <uib-tab heading="E-Mail Campaigns" select="loadEmail()">
+                            <table class="table table-stylish" id="sample-table-3">
+                                <thead>
+                                    <tr>
+                                        <th ng-click="sortEmailBy('compaign_name')" >Email Campaigns</th>
+                                        <th><i class="fa fa-time"></i> Emails Sent </th>
+                                        <th class="hidden-xs">Credit Used</th>
+                                        <th class="hidden-xs">Conversions</th>
+                                        <th ng-click="sortEmailBy('status')" class="hidden-xs">Status</th>
+                                        <th ng-click="sortEmailBy('created')" class="hidden-xs">Dated</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="d in emailData">
+                                    <tr>
+                                        <td><a href="#" uib-tooltip-html="d.message"> {{d.compaign_name}} </a></td>
+                                        <td class="hidden-xs">{{d.totalmsg}}</td>
+                                        <td>{{isNanBlank(d.totalmsg)}}</td>
+                                        <td class="hidden-xs">
+                                            {{d.totalredeemed}}
+                                        </td>
+                                        <td ng-class="{'bg-light-orange':d.status == 2, 'bg-light-green':d.status == 0, 'bg-success':d.status == 1,}">
+                                            <div class="text-white text-center">
+                                                {{d.status == 1 ? 'Running':''}}
+                                                {{d.status == 0 ? 'Completed':''}}
+                                                {{d.status == 2 ? 'Paused':''}}
+                                            </div>
+                                        </td>
+                                        <td class="hidden-xs ">{{d.created * 1000| amDateFormat:'DD-MM-YYYY hh:mm a'}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <ul class="pagination ng-table-pagination">
+                                <li ng-repeat="emPg in pager1.totalEmailPages" ng-class="{active:pager1.currentPg == emPg.vl}">
+                                    <a href="" ng-click="changeEmailPg(emPg.vl)" >{{emPg.vl}}</a>
+                                </li>
+                            </ul>
+                        </uib-tab>
+
+                    </uib-tabset>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->
+
+<style>
+    .bg-light-green{
+        position: inherit !important;
+    }
+    .bg-success{
+        position: inherit !important;
+    }
+    .nav-tabs > li {
+        width: 50%;
+    }
+
+</style>

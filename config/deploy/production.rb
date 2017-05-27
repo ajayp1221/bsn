@@ -1,0 +1,6 @@
+set :domain, 'business.zakoopi.com'
+set :deploy_to, '/var/www/business-new.zakoopi.com'
+set :repository, 'https://github.com/samiksarkar/bsnAngular.git'
+set :branch, 'master'
+set :user, 'ubuntu'
+set :identity_file, 'IndiaZKP.pem'

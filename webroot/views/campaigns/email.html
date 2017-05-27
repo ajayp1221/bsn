@@ -1,0 +1,167 @@
+<!-- start: BREADCRUMB -->
+<style>
+    .btn-info:active, .btn-info.active, .btn-info.active:focus, .btn-info:active:focus, .btn-info:active:hover, .btn-info.dropdown-toggle:active:hover{
+    background-color: #086b87 !important;
+    border-color: #086b87;}
+</style>
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">E-mail Campaigns for B'day & Anniversary </h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: STYLISH TABLE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="load1" ng-class="{csspinner:isSendingData}">
+                        <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <!--<pre>{{newCmp | json:spacing}}</pre>-->
+                            <h5 class="over-title margin-bottom-15">
+                                Add a New <span class="text-bold">  {{newCmp.repeat_type}}</span> Campaign
+                            </h5>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <div class="center">
+                                                    <label class="btn btn-wide btn-info btn-squared" ng-model="newCmp.repeat_type" uib-btn-radio="'birthday'">
+                                                        BirthDay
+                                                    </label>
+                                                    <label class="btn btn-wide btn-info btn-squared" ng-model="newCmp.repeat_type" uib-btn-radio="'anniversary'">
+                                                        Anniversary
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.compaign_name.$dirty && Form.compaign_name.$invalid, 'has-success':Form.compaign_name.$valid}">
+                                                <label class="control-label"> Campaign Name <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control" name="compaign_name" ng-model="newCmp.compaign_name" required />
+                                                <span class="error text-small block" ng-if="Form.compaign_name.$dirty && Form.compaign_name.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.compaign_name.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.subject.$dirty && Form.subject.$invalid, 'has-success':Form.subject.$valid}">
+                                                <label class="control-label"> Email Subject <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control" name="subject" ng-model="newCmp.subject" required />
+                                                <span class="error text-small block" ng-if="Form.subject.$dirty && Form.subject.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.subject.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.message.$dirty && Form.message.$invalid, 'has-success':Form.message.$valid}">
+                                                <label class="control-label">
+                                                    Message <span class="symbol required"></span>
+                                                </label>
+                                                <textarea ckeditor="options" required  name="message" ng-model="newCmp.message" ready="onReady()"></textarea>
+                                                <span class="error text-small block" ng-if="Form.message.$dirty && Form.message.$invalid">Message is required</span>
+                                                <span class="success text-small" ng-if="Form.message.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="checkbox clip-check check-success checkbox-inline">
+                                                <input type="checkbox" ng-model="newCmp.embedcode"  id="checkbox11" value="1" checked="">
+                                                <label for="checkbox11">
+                                                    Add coupon code
+                                                </label>
+                                            </div>
+                                            <a href="" popover-placement="right"  uib-popover="Check this box to include unique code is every sms to measure the effectiveness of campaign" popover-placement="top" popover-title=""><i class="fa fa-question-circle text-dark-transparent margin-left-5"></i></a>
+                                            <div class="form-group" ng-class="{'has-error':Form.send_before_day.$dirty && Form.send_before_day.$invalid, 'has-success':Form.send_before_day.$valid}">
+                                                <label class="control-label"> Send Sms Before days <span class="symbol required"></span> </label>
+                                                <input type="text"  ui-timepicker class="form-control" name="send_before_day" ng-model="newCmp.send_before_day" required />
+                                                <span class="error text-small block" ng-if="Form.send_before_day.$dirty && Form.send_before_day.$invalid">Send Before Days is required</span>
+                                                <span class="success text-small" ng-if="Form.send_before_day.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.send_at.$dirty && Form.send_at.$invalid, 'has-success':Form.send_at.$valid}">
+                                                <label class="control-label"> Send Sms On Time <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control" name="send_at" ng-model="newCmp.send_at" required />
+                                                <span class="error text-small block" ng-if="Form.send_at.$dirty && Form.send_at.$invalid">Send Before Days is required</span>
+                                                <span class="success text-small" ng-if="Form.send_at.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                                <button type="submit" class="btn btn-o btn-primary">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: ICONS AND HELPERS -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15">Birthday & Anniversary Campaigns <span class="text-bold">Table</span></h5>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th class="center no-border">ID</th>
+                                <th class="no-border">Campaign Name</th>
+                                <th class="hidden-xs no-border">Credit Used</th>
+                                <th class="no-border">Status</th>
+                                <th class="hidden-xs no-border">Redeemed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="campaign in campaigns">
+                                <td class="center" scope="row">{{campaign.id}}</td>
+                                <td>
+                                    <span  uib-tooltip="{{campaign.message}}">
+                                        {{campaign.compaign_name}}
+                                    </span>
+                                    <span ng-show="campaign.status == 1">
+                                        &nbsp;<i class="ti-pencil right-align" ng-click="openEditMdl(campaign.id,campaign.message)"></i>
+                                    </span>
+                                </td>
+                                <td class="hidden-xs">{{campaign.totalmsg * campaign.cost_multiplier}}</td>
+                                <td>
+                                    <select ng-model="campaign.status" ng-options="option.id as option.name for option in options" ng-change="changeStatus(campaign.status, campaign.id)">
+                                        <option value="">Select</option>
+                                    </select>
+                                </td>
+                                <td class="hidden-xs">
+                                    -
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script type="text/ng-template" id="editMsgMdl.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Update Campaign Message</h3>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea ckeditor="options" required  name="message" ng-model="message" ready="onReady()"></textarea>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+<!-- end STYLISH TABLE -->

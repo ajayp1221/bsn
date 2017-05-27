@@ -1,0 +1,89 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Social Share </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="load1" ng-class="{csspinner:isLoading}">
+                        <h4 class="text-bold">Social Media Sharing Screen</h4>
+                        <form  name="Form" id="form1" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                            <!--<pre>{{shareScreen | json:spacing}}</pre>-->
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-body">
+                                            <div class="checkbox clip-check check-success checkbox-inline">
+                                                <input type="checkbox" ng-model="shareScreen.active"  id="checkbox11">
+                                                <label for="checkbox11">
+                                                    Is Active
+                                                </label>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.header_text.$dirty && Form.header_text.$invalid, 'has-success':Form.header_text.$valid}">
+                                                <label class="control-label"> Header Text <span class="symbol required"></span> </label>
+                                                <textarea class="form-control autosize area-animated msd-elastic: \n;" name="header_text" required ng-model="shareScreen.header_text"></textarea>
+                                                <span class="error text-small block" ng-if="Form.header_text.$dirty && Form.header_text.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.header_text.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.description.$dirty && Form.description.$invalid, 'has-success':Form.description.$valid}">
+                                                <label class="control-label">
+                                                    Description<span class="symbol required"></span>
+                                                </label>
+                                                <textarea class="form-control autosize area-animated msd-elastic: \n;" name="description" required ng-model="shareScreen.description"></textarea>
+                                                <span class="error text-small block" ng-if="Form.description.$dirty && Form.description.$invalid">Message is required</span>
+                                                <span class="success text-small" ng-if="Form.description.$valid">Thank You!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <h4 class="text-bold">Social Media Sharing Popup</h4>
+                            <!--<pre>{{shareScreen | json:spacing}}</pre>-->
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-body">
+                                            <div class="form-group" ng-class="{'has-error':Form.popup_title.$dirty && Form.popup_title.$invalid, 'has-success':Form.popup_title.$valid}">
+                                                <label class="control-label"> Title <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control autosize area-animated msd-elastic: \n;" name="popup_title" required ng-model="shareScreen.popup_title" />
+                                                <span class="error text-small block" ng-if="Form.popup_title.$dirty && Form.popup_title.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.popup_title.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.popup_url.$dirty && Form.popup_url.$invalid, 'has-success':Form.popup_url.$valid}">
+                                                <label class="control-label"> Url that can be shared <span class="symbol required"></span> </label>
+                                                <input type="text" class="form-control autosize area-animated msd-elastic: \n;" name="popup_url" required ng-model="shareScreen.popup_url" />
+                                                <span class="error text-small block" ng-if="Form.popup_url.$dirty && Form.popup_url.$invalid">Name is required</span>
+                                                <span class="success text-small" ng-if="Form.popup_url.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group" ng-class="{'has-error':Form.popup_message.$dirty && Form.popup_message.$invalid, 'has-success':Form.popup_message.$valid}">
+                                                <label class="control-label">Sharing Message<span class="symbol required"></span>
+                                                </label>
+                                                <textarea class="form-control autosize area-animated msd-elastic: \n;" name="popup_message" required ng-model="shareScreen.popup_message"></textarea>
+                                                <span class="error text-small block" ng-if="Form.popup_message.$dirty && Form.popup_message.$invalid">Message is required</span>
+                                                <span class="success text-small" ng-if="Form.popup_message.$valid">Thank You!</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                                <button type="submit" class="btn btn-o btn-primary">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

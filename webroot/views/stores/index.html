@@ -1,0 +1,289 @@
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>-->
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Store Info</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: IMAGES AND THUMBNAILS -->
+<div class="container-fluid container-fullw" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Store Information</span></h5>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-white">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+                                            <v-accordion class="vAccordion--default" multiple>
+                                                <!-- add expanded attribute to open the section -->
+                                                <v-pane expanded>
+                                                    <v-pane-header>
+                                                        <b>Address</b>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <!--<div ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon">-->
+                                                        <div class="icon">
+                                                            {{store.store_address}}
+                                                            <i ng-show="options" class="ti-pencil right-align" ng-click="toggleEdit($event,true)"></i>
+                                                        </div>
+                                                        <div class="hide">
+                                                            <div class="form-group">
+                                                                <input ng-model="store.store_address" class="form-control">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" ng-click="save(store)">Save</button>
+                                                            <button type="submit" class="btn btn-default" ng-click="toggleEdit($event,false)">Cancel</button>
+                                                        </div>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                                <v-pane expanded>
+                                                    <v-pane-header>
+                                                        <b>Catalogue</b>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <!--<div class="form" ng-repeat="offering in store.store_offerings" ng-mouseenter="option=true" ng-mouseleave="option=false" >-->
+                                                        <div class="form" ng-repeat="offering in store.store_offerings">
+                                                            <div ng-hide="editorEnabled1">
+                                                                <b>{{offering.offering.name}} : </b>{{offering.price_range_from}}-{{offering.price_range_to}}
+                                                                <i ng-click="enableEditor1(offering)" class="ti-pencil right-align"></i>
+                                                            </div>
+                                                            <div ng-show="offering.editorEnabled1">
+                                                                <div class="form-group">
+                                                                    <input ng-model="offering.offering.name" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input ng-model="offering.price_range_from" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input ng-model="offering.price_range_to" class="form-control">
+                                                                </div>
+                                                                <button type="submit" class="btn btn-primary" ng-click="save1(offering,store)">Save</button>
+                                                                <button type="submit" class="btn btn-default" ng-click="disableEditor1(offering)">Cancel</button>
+                                                            </div>
+                                                            <hr/>
+                                                        </div>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                            </v-accordion>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <v-accordion class="vAccordion--default" multiple>
+                                                <v-pane expanded>
+                                                    <v-pane-header>
+                                                        <b>Store Timing</b>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <!--<div ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon">-->
+                                                        <div class="icon">
+                                                            {{store.store_timing_from}} - {{store.store_timing_to}}<br/>
+                                                            {{store.closed_day}}
+                                                            <i  ng-show="options" class="ti-pencil right-align" ng-click="toggleEdit($event,true)"></i>
+                                                        </div>
+                                                        <div class="hide">
+                                                            <div class="form-group">
+                                                                <input ng-model="store.store_timing_from" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input ng-model="store.store_timing_to" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input ng-model="store.closed_day" class="form-control">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                                                            <button type="submit" class="btn btn-default" ng-click="toggleEdit($event,false)">Cancel</button>
+                                                        </div>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                                <v-pane expanded>
+                                                    <v-pane-header>
+                                                        <b>Contact Number</b>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <!--<div ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon">-->
+                                                        <div class="icon">
+                                                            <p ng-repeat="a in store.telephone.split(';')">
+                                                                {{a}}
+                                                            </p>
+                                                            <i ng-show="options" class="ti-pencil right-align" ng-click="toggleEdit($event,true)"></i>
+                                                        </div>
+                                                        <div class="hide">
+                                                            <div class="form-group">
+                                                                <input ng-model="store.telephone" class="form-control">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                                                            <button type="submit" class="btn btn-default" ng-click="toggleEdit($event,false)">Cancel</button>
+                                                        </div>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                                <v-pane expanded>
+                                                    <v-pane-header>
+                                                        <b>Email</b>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <!--<div ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon">-->
+                                                        <div class="icon">
+                                                            {{store.store_email_address}}
+                                                            <i ng-show="options" class="ti-pencil right-align" ng-click="toggleEdit($event,true)"></i>
+                                                        </div>
+                                                        <div class="hide">
+                                                            <div class="form-group">
+                                                                <input ng-model="store.store_email_address" class="form-control">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                                                            <button type="submit" class="btn btn-default" ng-click="toggleEdit($event,false)">Cancel</button>
+                                                        </div>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                                <v-pane expanded>
+                                                    <v-pane-header>
+                                                        <b>Follow</b>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <!--<div ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon">-->
+                                                        <div class="icon">
+                                                            <table class="table no-margin" ng-click="toggleEdit($event,true)">
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-link" class="pull-left margin-right-10" box="round" color="#AEAEFF" color-hover="#5353FF"></letter-icon>
+                                                                            <span class="block">Website</span> 
+                                                                            <span class="text-small text-light">{{store.website}}</span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-facebook" class="pull-left margin-right-10" box="round" color="#6F83B6" color-hover="#4862A3"></letter-icon>
+                                                                            <span class="block">Facebook</span> 
+                                                                            <span class="text-small text-light">{{store.facebook_link}}</span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-twitter" class="pull-left margin-right-10" box="round" color="#79BEF1" color-hover="#55ACEE"></letter-icon>
+                                                                            <span class="block">Twitter</span> 
+                                                                            <span class="text-small text-light">{{store.twitter_link}}</span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-instagram" class="pull-left margin-right-10" box="round" color="#D6C196" color-hover="#927538"></letter-icon>
+                                                                            <span class="block">Instagram</span> 
+                                                                            <span class="text-small text-light">{{store.instagram_link}}</span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            
+                                                            <!--<i ng-show="options" class="ti-pencil right-align" ng-click="toggleEdit($event,true)"></i>-->
+                                                        </div>
+                                                        <div class="hide">
+                                                            <div class="form-group">
+                                                                <table class="table no-margin" >
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-link" class="pull-left margin-right-10 margin-top-5" box="round" color="#AEAEFF" color-hover="#5353FF"></letter-icon>
+                                                                            <span class="block">Website</span> 
+                                                                            <span class="text-small text-light">
+                                                                                <input ng-model="store.website" placeholder="website url here..." class="form-control width-200">
+                                                                            </span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-facebook" class="pull-left margin-right-10  margin-top-5" box="round" color="#6F83B6" color-hover="#4862A3"></letter-icon>
+                                                                            <span class="block">Facebook</span> 
+                                                                            <span class="text-small text-light">
+                                                                                <input ng-model="store.facebook_link" placeholder="facebook url here..." class="form-control width-200">
+                                                                            </span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-twitter" class="pull-left margin-right-10  margin-top-5" box="round" color="#79BEF1" color-hover="#55ACEE"></letter-icon>
+                                                                            <span class="block">Twitter</span> 
+                                                                            <span class="text-small text-light">
+                                                                                <input ng-model="store.twitter_link" placeholder="twitter url here..." class="form-control width-200">
+                                                                            </span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="">
+                                                                            <letter-icon data-icon="fa fa-instagram" class="pull-left margin-right-10  margin-top-5" box="round" color="#D6C196" color-hover="#927538"></letter-icon>
+                                                                            <span class="block">Instagram</span> 
+                                                                            <span class="text-small text-light">
+                                                                                <input ng-model="store.instagram_link" placeholder="instagram url here..." class="form-control width-200">
+                                                                            </span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                                                            <button type="submit" class="btn btn-default" ng-click="toggleEdit($event,false)">Cancel</button>
+                                                        </div>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                                <v-pane expanded>
+                                                    <v-pane-header>
+                                                        <b>Location</b>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <div>
+                                                            <input id="pac-input" class="controls on-ed" style="width:60%; right: 0" type="text" placeholder="Search Box">
+                                                            <div id="map" style="width:100%; height: 200px;" ></div>
+                                                        </div>
+                                                        <div >
+                                                            <button ng-click="toggleEdit($event,true)" class="btn btn-default">
+                                                                <i ng-show="options" class="ti-pencil right-align" ></i> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div class="hide margin-5">
+                                                            
+                                                            <div class="form-group">
+                                                                <input ng-model="store.latitude" placeholder="Latitude" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input ng-model="store.longitude" placeholder="Longitude" class="form-control">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                                                            <button type="submit" class="btn btn-default" ng-click="toggleEdit($event,false)">Cancel</button>
+                                                        </div>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                            </v-accordion>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .ed-enable .on-ed {
+        display: block
+    }
+    .on-ed {
+        display: none;
+    }
+</style>

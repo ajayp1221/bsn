@@ -1,0 +1,127 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Manage Products </h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: STYLISH TABLE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="load1" ng-class="{csspinner:isSendingData}">
+                <div class="row">
+                    <div class="col-lg-4">
+
+                        <h5 class="text-bold center">
+                            WOMEN
+                        </h5>
+                        <ul class="list-group" >
+                            <li class="list-group-item " ng-repeat="product in products" ng-if="product.category == 'women'">
+                                <a editable-text="product.product_name" onaftersave="$parent.editPrd($data,product.id)" >{{product.product_name|| 'empty'}}</a>
+                                <div class="links cl-effect-1 pull-right">
+                                    <a href="#" class="text-warning" ng-click="$parent.deletePrd(product.id)"><i class="ti-close"></i></a>
+                                </div>
+                            </li>
+                            <li class="list-group-item ">
+                                <div class="links cl-effect-1 center" ng-hide="addNewWomenBx">
+                                    <a href="#" ng-click="showAddNew('women')" class="text-warning"><i class="ti-plus"></i> Add Product</a>
+                                </div>
+                                <div ng-show="addNewWomenBx">
+                                    <form name="Form" ng-submit="form.submit(Form)">
+                                        <div>
+                                            <div class="input-group">
+                                                <label> </label>
+                                                <input type="text" class="form-control" ng-model="newPrdct.product_name" placeholder="Type a product name" />
+                                                <input type="hidden" ng-model="newPrdct.category" value="women" placeholder="Type a product name" />
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="col-lg-4">
+
+                        <h5 class="text-bold center">
+                            MEN
+                        </h5>
+                        <ul class="list-group" >
+                            <li class="list-group-item " ng-repeat="product in products" ng-if="product.category == 'men'">
+                                <a editable-text="product.product_name" onaftersave="$parent.editPrd($data,product.id)" >{{product.product_name|| 'empty'}}</a>
+                                <div class="links cl-effect-1 pull-right">
+                                    <a href="#" class="text-warning" ng-click="$parent.deletePrd(product.id)"><i class="ti-close"></i></a>
+                                </div>
+                            </li>
+                            <li class="list-group-item ">
+                                <div class="links cl-effect-1 center" ng-hide="addNewMenBx">
+                                    <a href="#" ng-click="showAddNew('men')" class="text-warning"><i class="ti-plus"></i> Add Product</a>
+                                </div>
+                                <div ng-show="addNewMenBx">
+                                    <form name="Form" ng-submit="form.submit(Form)">
+                                        <div>
+                                            <div class="input-group">
+                                                <label> </label>
+                                                <input type="text" class="form-control" ng-model="newPrdct.product_name" placeholder="Type a product name" />
+                                                <input type="hidden" ng-model="newPrdct.category" value="men" placeholder="Type a product name" />
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                        
+
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="text-bold center">
+                            KIDS
+                        </h5>
+                        <ul class="list-group" >
+                            <li class="list-group-item " ng-repeat="product in products" ng-if="product.category == 'kids'">
+                                <a editable-text="product.product_name" onaftersave="$parent.editPrd($data,product.id)" >{{product.product_name|| 'empty'}}</a>
+                                <div class="links cl-effect-1 pull-right">
+                                    <a href="#" class="text-warning" ng-click="$parent.deletePrd(product.id)"><i class="ti-close"></i></a>
+                                </div>
+                            </li>
+                            <li class="list-group-item ">
+                                <div class="links cl-effect-1 center" ng-hide="addNewKidsBx">
+                                    <a href="#" ng-click="showAddNew('kids')" class="text-warning"><i class="ti-plus"></i> Add Product</a>
+                                </div>
+                                <div ng-show="addNewKidsBx">
+                                    <form name="Form" ng-submit="form.submit(Form)">
+                                        <div>
+                                            <div class="input-group">
+                                                <label> </label>
+                                                <input type="text" class="form-control" ng-model="newPrdct.product_name" placeholder="Type a product name" />
+                                                <input type="hidden" ng-model="newPrdct.category" value="kids" placeholder="Type a product name" />
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .editable-wrap .editable-controls>input, .editable-wrap .editable-controls>select, .editable-wrap .editable-controls>textarea{
+        width: 161px;
+    }
+</style>

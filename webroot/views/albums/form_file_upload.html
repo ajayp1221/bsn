@@ -1,0 +1,140 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Your Photos and Albums</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: IMAGES AND THUMBNAILS -->
+<div class="container-fluid container-fullw" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <script type="text/ng-template" id="uploadImgAside.html">
+                        <form enctype ="multipart/form-data" id="fileUploadFrm">
+                            <div class="modal-header">
+                                <h3 class="modal-title">{{albumAdd.name}}</h3>
+                            </div>
+                                <div class="modal-body">
+                                    <div ng-hide="showPrg">
+                                        <span class="btn btn-primary btn-o btn-file">
+                                            Select an image file
+                                            <input type="file" name="albumimages[]" multiple />
+                                        </span>
+                                    </div>
+                                    <div ng-show="showPrg">
+                                        <uib-progressbar animate="true" value="progress" type="success"><b>{{prgText}}</b></uib-progressbar>
+                                    </div>
+                                </div>
+                            <div class="modal-footer">
+                                <button ng-hide="showPrg" class="btn btn-primary" ng-click="ok()">Save</button>
+                                <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </form>
+                    </script>
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Albums Images</span></h5>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-white"  ng-repeat="album in albums">
+                                <div class="panel-heading">
+                                    <div class="panel-title" ng-mouseenter="option=true" ng-mouseleave="option=false">
+                                        <div ng-hide="album.editorEnabled1">
+                                            {{album.name}} ( {{album.albumimages.length}} )
+                                            <i ng-show="option" ng-click="enableEditor1(album)" class="ti-pencil right-align"></i>
+                                        </div>
+                                        <div ng-show="album.editorEnabled1">
+                                            <div class="form-group">
+                                                <input ng-model="album.name" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea ng-model="album.description" placeholder="Description" class="form-control"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" ng-click="save1(album)">Save</button>
+                                            <button type="submit" class="btn btn-default" ng-click="disableEditor1(album)">Cancel</button>
+                                        </div>
+                                        <a style="float:right" href="javascript:void()" class="text-bold" ng-click="addImage(album)">
+                                            Add New Images
+                                        </a>
+                                    </div>
+                                </div>
+                                <script type="text/ng-template" id='UpdatePicAsideQue.html'>
+                                        <div class="modal-header">
+                                            <h3 class="modal-title">Update Image</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <a href="#" class="thumbnail"> 
+                                                <img ng-src="{{updateImg.android_api_img_large}}">
+                                            </a>
+                                            <div class="form-group">
+                                                <label>
+                                                    Message
+                                                </label>
+                                                <textarea ng-model="updateImg.description" class="form-control autosize area-animated msd-elastic: \n;">
+                                                    {{ updateImg.description }}
+                                                </textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    Price
+                                                </label>
+                                                <input type="text" class="form-control" ng-model="updateImg.price" placeholder="Enter Your Price Here"/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" ng-click="ok($event)">OK</button>
+                                            <button class="btn btn-primary" ng-click="cancel($event)">Cancel</button>
+                                        </div>
+                                    </script>
+                                <div class="panel-body">
+                                    <p class="text-small">
+                                        {{album.description}}
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-3" ng-repeat="(index,albumimage) in album.albumimages">
+                                            <a href="#" class="thumbnail">
+                                                <div class="bgImg" ng-style="{
+                                                    'background-image':'url({{albumimage.android_api_img_large}})'}"></div>
+                                                <!--<img ng-src="{{albumimage.android_api_img_large}}">-->
+                                            </a>
+                                            <div class="caption">
+                                                <!--<h3>Thumbnail label</h3>-->
+                                                <p hm-read-more
+                                                    hm-text="{{albumimage.description}}" 
+                                                    hm-limit="100" 
+                                                    hm-more-text="<b>read more</b>" 
+                                                    hm-less-text="<b>read less</b>"
+                                                    hm-dots-class="dots"
+                                                    hm-link-class="links"
+                                                    >
+
+                                                </p>
+                                                <p>
+                                                    <a href="#" class="btn btn-o btn-danger"  ng-click="albumimagesDelete(albumimage.id)"> Delete </a>
+                                                    <a href="#" class="btn btn-o btn-primary" ng-click="albumimagesUpdate(index,album )"> Update </a>
+                                                    <!--<a href="#" class="btn btn-o btn-primary" ng-click="albumimagesUpdate(albumimage.id)"> Update </a>-->
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: IMAGES AND THUMBNAILS -->
+
+<style>
+    .bgImg{
+        height: 200px;
+        background-color: #cccccc;
+        background-size: auto 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+</style>

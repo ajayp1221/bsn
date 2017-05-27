@@ -1,0 +1,62 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Sms Ledger</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: STYLISH TABLE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15">Sms Ledger <span class="text-bold">Table</span></h5>
+                    <div aria-label="First group" role="group" class="btn-group btn-group-xs pull-right">
+                        <button ng-click="setLimit(10)" class="btn btn-primary" type="button">
+                            10
+                        </button>
+                        <button ng-click="setLimit(20)" class="btn btn-primary" type="button">
+                            20
+                        </button>
+                        <button ng-click="setLimit(50)" class="btn btn-primary" type="button">
+                            50
+                        </button>
+                        <button ng-click="setLimit(100)" class="btn btn-primary" type="button">
+                            100
+                        </button>
+                    </div>
+                    <br><br>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th class="center no-border"><a ng-click="sortBy('id')">ID</a></th>
+                                <th class="no-border">Comment</th>
+                                <th class="hidden-xs no-border"><a ng-click="sortBy('credit')">Credit</a></th>
+                                <th class="hidden-xs no-border"><a ng-click="sortBy('debit')">Debit</a></th>
+                                <th class="no-border"><a ng-click="sortBy('balance')">balance</a></th>
+                                <th class="hidden-xs no-border"><a ng-click="sortBy('created')">Date</a></th>
+                                <th class="hidden-xs no-border">extra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="smsledger in smsledgers">
+                                <td class="center" scope="row">{{smsledger.id}}</td>
+                                <td>{{smsledger.comments}}</td>
+                                <td class="hidden-xs">{{smsledger.credit}}</td>
+                                <td class="hidden-xs">{{smsledger.debit}}</td>
+                                <td class="hidden-xs">{{smsledger.balance}}</td>
+                                <td class="hidden-xs">{{smsledger.created * 1000| amDateFormat:'DD-MM-YYYY hh:mm a'}}</td>
+                                <td class="hidden-xs">{{smsledger.extra}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

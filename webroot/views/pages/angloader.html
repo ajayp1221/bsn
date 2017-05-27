@@ -1,0 +1,108 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="dashboard.WELCOME" translate-values="{ appName: app.name }">WELCOME TO CLIP-TWO</h4>
+    <span class="mainDescription">overview &amp; stats </span>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: FIRST SECTION -->
+<div class="container-fluid container-fullw padding-bottom-10">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-white no-radius no-border" id="visits">
+                        <div class="panel-heading padding-right-70">
+                            <h4 class="inline-block"> Account Balance </h4>
+                            <ct-paneltool class="panel-tools" tool-refresh="load1" ng-click="loadBlockOne()" tool-expand="tool-expand"></ct-paneltool>
+                        </div>
+                        <div class="panel-wrapper">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <!--{{blockOneChart.options | json:string}}-->
+                                        <canvas class="chart chart-bar height-150" chart-data="blockOneChart.data" chart-options="blockOneChart.options" chart-labels="blockOneChart.labels" chart-series="blockOneChart.series"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-white no-radius no-border" id="visits">
+                        <div class="panel-heading padding-right-70">
+                            <h4 class="inline-block"> Recent campaigns </h4>
+                            <ct-paneltool class="panel-tools" tool-refresh="load1" ng-click="loadBlockTwo()" tool-expand="tool-expand"></ct-paneltool>
+                        </div>
+                        <div class="panel-wrapper">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <canvas class="chart chart-bar height-150" chart-data="blockTwoChart.data" chart-options="blockTwoChart.options" chart-labels="blockTwoChart.labels" chart-series="blockTwoChart.series"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-white no-radius no-border" id="visits">
+                        <div class="panel-heading padding-right-70">
+<!--                            <h2 class="inline-block"> Total Customers </h2>-->
+                            <ct-paneltool class="panel-tools" tool-refresh="load1" ng-click="loadBlockThree()" tool-expand="tool-expand"></ct-paneltool>
+                        </div>
+                        <div class="panel-wrapper">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <div style="border-radius: 50%; height: 150px; width: 150px; vertical-align: middle; display: table-cell; text-align: center" class="bg-dark-purple centered">
+                                                    <h2 class="text-white">{{blockThreeChart.value}}</h2>
+                                                    <h4 class="text-white">Total Customers</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div style=" border-radius: 50%; height: 150px; width: 150px; vertical-align: middle; display: table-cell; text-align: center" class="bg-dark-azure centered">
+                                                    <h2 class="text-white">{{blockThreeChart.opted}}</h2>
+                                                    <h4 class="text-white">Opted Customers</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+<!--                                        <div class="inline-block">
+                                            <ui-knob value="blockThreeChart.value" options="blockThreeChart.options"></ui-knob>
+                                            <span class="text-white block">RAM used</span>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-white no-radius no-border" id="visits">
+                        <div class="panel-heading padding-right-70">
+                            <h4 class="inline-block"> Recently added customers</h4>
+                            <ct-paneltool class="panel-tools" tool-refresh="load1" ng-click="loadBlockFour()" tool-expand="tool-expand"></ct-paneltool>
+                        </div>
+                        <div class="panel-wrapper">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <canvas class="chart chart-line height-150" chart-data="blockFourChart.data" chart-options="blockFourChart.options" chart-labels="blockFourChart.labels" chart-series="blockFourChart.series"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

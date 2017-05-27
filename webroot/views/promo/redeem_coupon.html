@@ -1,0 +1,86 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Redeem Coupon</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white load1" ng-class="{csspinner:isLoading}">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Redeem Coupon</span></h5>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-white">
+                                <form name="Form" id="form" novalidate="" ng-submit="form.submit(Form)" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-max ng-valid-min">
+                                    <div class="form-group" ng-class="{'has-error':Form.promo_code.$dirty && Form.promo_code.$invalid, 'has-success':Form.promo_code.$valid}">
+                                        <!--<label class="control-label"> Enter Coupon Code<span class="symbol required"></span> </label>-->
+                                        <input type="text" placeholder="Enter Coupon Code" class="form-control" name="promo_code" ng-model="redeemCpn.promo_code" required />
+                                        <span class="error text-small block" ng-if="Form.promo_code.$dirty && Form.promo_code.$invalid">Coupon code is required</span>
+                                        <span class="success text-small" ng-if="Form.promo_code.$valid">Thank You!</span>
+                                    </div>
+                                    <div ng-if="redeemCpn.is_contact==1">
+                                        <div class="form-group" ng-class="{'has-error':Form.contact_no.$dirty && Form.contact_no.$invalid, 'has-success':Form.contact_no.$valid}">
+                                            <label class="control-label"> Enter Contact Number<span class="symbol required"></span> </label>
+                                            <input type="text" placeholder="Enter Contact Number" class="form-control" name="contact_no" ng-model="redeemCpn.contact_no" required />
+                                            <span class="error text-small block" ng-if="Form.contact_no.$dirty && Form.contact_no.$invalid">Contact number is required</span>
+                                            <span class="success text-small" ng-if="Form.contact_no.$valid">Thank You!</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Coupon history</span></h5>
+                    <table class="table table-stylish" id="sample-table-1">
+                        <thead>
+                            <tr>
+                                <th class="center no-border">Customer Name</th>
+                                <th class="center no-border">Number</th>
+                                <th class="no-border">Coupon Code</th>
+                                <th class="hidden-xs no-border">Message</th>
+                                <th  class="hidden-xs no-border">Redeemed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="message in messages">
+                                <td class="center" scope="row">{{message.customer.name}}</td>
+                                <td class="center" scope="row">{{message.customer.contact_no}}</td>
+                                <td>{{message.promo_code}}</td>
+                                <td class="hidden-xs">{{message.campaign.message}}</td>
+                                <td ng-if="message.used">
+                                    Yes
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination ng-table-pagination">
+                        <li ng-repeat="n in pager.totalPages" ng-class="{active:pager.currentPg == n.vl}">
+                            <a href="" ng-click="changePg(n.vl)" >{{n.vl}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .bgImg{
+        height: 200px;
+        background-color: #cccccc;
+        background-size: auto 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .nav-tabs > li {
+        width: 50%;
+    }
+</style>
